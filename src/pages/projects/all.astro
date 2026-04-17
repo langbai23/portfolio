@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/portfolio/NavBar.astro";
+import ProjectCard from "../../components/portfolio/ProjectCard.astro";
+import SiteFooter from "../../components/portfolio/SiteFooter.astro";
+import LanguageScript from "../../components/portfolio/LanguageScript.astro";
+import { ALL_PROJECTS } from "../../data/projects";
+---
+
+<Layout
+  title="All projects | David Bao"
+  description="Full project list: games, UX/UI, and tabletop design—newest first."
+>
+  <NavBar />
+
+  <main class="container projects-all-page">
+    <section class="projects-all" aria-labelledby="projects-all-heading">
+      <h1 id="projects-all-heading" class="section-title" data-i18n="projectsAllTitle">All projects</h1>
+      <p class="section-subtitle" data-i18n="projectsAllSubtitle">
+        Everything in chronological order, newest to oldest.
+      </p>
+      <div class="project-grid">
+        {ALL_PROJECTS.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+  <LanguageScript />
+</Layout>

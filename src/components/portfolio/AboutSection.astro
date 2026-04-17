@@ -1,0 +1,72 @@
+---
+import { ALL_PROJECTS } from "../../data/projects";
+
+const projectCount = ALL_PROJECTS.length;
+---
+
+<section id="about">
+  <span class="section-eyebrow" data-i18n="aboutEyebrow">About</span>
+  <h2 class="section-title" data-i18n="aboutTitle">About</h2>
+  <div class="about-box">
+    <div class="about-layout">
+      <figure class="about-photo-wrap">
+        <img
+          class="about-photo"
+          src="/about-photo.png"
+          alt="David Bao at Ubisoft Shanghai"
+          width="640"
+          height="800"
+          loading="lazy"
+          decoding="async"
+          data-i18n-alt="aboutPhotoAlt"
+        />
+      </figure>
+      <div class="about-main">
+        <div class="about-copy">
+          <p data-i18n="aboutP1">
+            I'm a freshman at USC studying game design. I'm most passionate about storytelling and system
+            design—emotion and meaning, expressed through rules, loops, and feedback players can actually feel.
+          </p>
+          <p data-i18n="aboutP2">
+            I care most when mechanics and narrative pull the same direction: clear systems, and story beats
+            that land because the design earns them—not just the script.
+          </p>
+          <p data-i18n="aboutP3">
+            Lately that's Unity: small prototypes where I test narrative and systems in the same build and
+            iterate fast.
+          </p>
+          <p data-i18n="aboutP4">
+            I'm always learning from games that marry story with systems—and I'd love to meet others who care
+            about that mix too.
+          </p>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-value">{projectCount}</div>
+            <div class="stat-label" data-i18n="aboutStatGamesLabel">Projects Built</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-value" data-i18n="aboutStatJamValue">1</div>
+            <div class="stat-label" data-i18n="aboutStatJamLabel">Game Jam</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-value" data-i18n="aboutStatYearsValue">3+</div>
+            <div class="stat-label" data-i18n="aboutStatYearsLabel">Years Learning</div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-value" data-i18n="aboutStatIdeasValue">±∞</div>
+            <div class="stat-label" data-i18n="aboutStatIdeasLabel">Ideas in Progress</div>
+          </article>
+        </div>
+        <h3 class="skills-title" data-i18n="skillsTitle">Tools & Skills</h3>
+        <div class="skills-list">
+          <span class="pill-tag">Unity</span>
+          <span class="pill-tag">Unreal</span>
+          <span class="pill-tag">C++</span>
+          <span class="pill-tag">Java</span>
+          <span class="pill-tag">Figma</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

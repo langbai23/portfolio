@@ -1,0 +1,22 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import { ALL_PROJECTS, HOME_PROJECT_COUNT } from "../../data/projects";
+
+const homeProjects = ALL_PROJECTS.slice(0, HOME_PROJECT_COUNT);
+---
+
+<section id="projects">
+  <span class="section-eyebrow" data-i18n="projectsEyebrow">Portfolio</span>
+  <h2 class="section-title" data-i18n="projectsTitle">Projects</h2>
+  <p class="section-subtitle" data-i18n="projectsSubtitle">
+    Design research, tabletop systems, and Unity games—selected work from my portfolio.
+  </p>
+
+  <div class="project-grid">
+    {homeProjects.map((project) => <ProjectCard project={project} />)}
+  </div>
+
+  <div class="projects-view-all">
+    <a href="/projects/all" class="button primary" data-i18n="viewAllProjects">View all projects</a>
+  </div>
+</section>

@@ -1,0 +1,417 @@
+<script>
+  const translations = {
+    en: {
+      navProjects: "Projects",
+      navAbout: "About",
+      navContact: "Contact",
+      heroEyebrow: "Game Developer · USC",
+      heroTagline:
+        "Storytelling & system design · Game development · USC undergrad",
+      heroPrimaryBtn: "View Projects",
+      heroSecondaryBtn: "Contact Me",
+      heroCardTitle: "Lately",
+      heroCardText:
+        "I'm most excited when narrative and systems reinforce each other—rules and loops that carry emotion and story. Lately I'm exploring that in Unity through small prototypes, and I'd love to connect with others who care about both.",
+      projectsEyebrow: "Portfolio",
+      projectsTitle: "Projects",
+      projectsSubtitle:
+        "Latest work first—here are four highlights. Open the full archive for everything, newest to oldest.",
+      viewAllProjects: "View all projects",
+      projectsAllTitle: "All projects",
+      projectsAllSubtitle: "Complete list in chronological order, newest to oldest.",
+      project1Status: "UX · UI",
+      project1Tag: "Interaction Design",
+      project1Title: "CAMI",
+      project1Desc:
+        "A friendly AI companion concept explored through user research, personas, journey mapping, information architecture, wireframes, and interface design—framed around real-world conversations about misinformation, misconceptions, and AI anxiety.",
+      project1Tools: "Figma · UX research · UI design",
+      project1ChipRole: "Solo",
+      project1ChipFocus: "AI literacy",
+      project1ChipType: "Product",
+      project2Status: "Tabletop",
+      project2Tag: "Board Game",
+      project2Title: "Picnic Panic!",
+      project2Desc:
+        "An ant-inspired cooperative board game: escape the storm, gather food, and survive backyard hazards—built around movement, combat, items, rivals, and clear win/lose conditions.",
+      project2Tools: "Game design · Rules · Playtesting",
+      project2ChipRole: "Designer",
+      project2ChipFocus: "Co-op",
+      project2ChipType: "Prototype",
+      project3Status: "Released",
+      project3Tag: "2D · Pixel · Shooter",
+      project3Title: "Overtale",
+      project3Desc:
+        "Overtale is a 2D pixel-art platform shooter made in Unity (2024): move, jump, and shoot through compact levels built around readable combat and flow.",
+      project3Tools: "Unity · C# · Pixel art · 2D platform shooter",
+      project3ChipRole: "Solo Dev",
+      project3ChipType: "2D",
+      project4Status: "Unity 3D",
+      project4Tag: "Narrative",
+      project4Title: "Traveler",
+      project4Desc:
+        "Traveler is a Unity 3D narrative game about a criminal choosing a path toward heaven or hell—exploring moral choice through exploration and story beats.",
+      project4Tools: "Unity · 3D · Story-driven",
+      project4ChipRole: "Solo Dev",
+      project4ChipFocus: "Choice",
+      project4ChipType: "3D",
+      project5Status: "Unity 3D",
+      project5Tag: "3D",
+      project5Title: "After They're Gone",
+      project5Desc:
+        "After They're Gone is a 3D Unity game about robots salvaging a world without humans—a dystopian city where sanitation falls entirely to machines, told through exploration and environmental storytelling.",
+      project5Tools: "Unity · 3D · Environment storytelling",
+      project5ChipRole: "Solo",
+      project5ChipFocus: "Exploration",
+      project5ChipType: "Robots",
+      projectHoverPreviewHint: "Hover to preview",
+      projectDemoLink: "Live Demo",
+      projectCodeLink: "Source Code",
+      aboutEyebrow: "About",
+      aboutTitle: "About",
+      aboutP1:
+        "I'm a freshman at USC studying game design. I'm most passionate about storytelling and system design—emotion and meaning, expressed through rules, loops, and feedback players can actually feel.",
+      aboutP2:
+        "I care most when mechanics and narrative pull the same direction: clear systems, and story beats that land because the design earns them—not just the script.",
+      aboutP3:
+        "Lately that's Unity: small prototypes where I test narrative and systems in the same build and iterate fast.",
+      aboutP4:
+        "I'm always learning from games that marry story with systems—and I'd love to meet others who care about that mix too.",
+      aboutStatGamesLabel: "Projects Built",
+      aboutStatJamValue: "1",
+      aboutStatJamLabel: "Game Jam",
+      aboutStatYearsValue: "3+",
+      aboutStatYearsLabel: "Years Learning",
+      aboutStatIdeasValue: "±∞",
+      aboutStatIdeasLabel: "Ideas in Progress",
+      skillsTitle: "Tools & Skills",
+      aboutPhotoAlt: "David Bao at Ubisoft Shanghai",
+      contactTitle: "Let's Connect",
+      contactSubtitle: "You can reach me by email, connect on LinkedIn, or call me directly.",
+      contactLinkedInLabel: "LinkedIn",
+      contactPhoneLabel: "Phone: 2134490511",
+      galleryBack: "← Back to projects",
+      galleryCamiHeading: "CAMI",
+      galleryCamiLede: "Slides exported from my portfolio PDF in order (original pages 2–8).",
+      galleryPicnicHeading: "Picnic Panic!",
+      galleryPicnicLede: "Slides exported from my portfolio PDF in order (original pages 9–13).",
+      footerText: "Built by David Bao with Astro"
+    },
+    zh: {
+      navProjects: "项目",
+      navAbout: "关于",
+      navContact: "联系",
+      heroEyebrow: "游戏开发者 · USC",
+      heroTagline: "热爱叙事与系统设计 · 游戏开发 · USC 本科",
+      heroPrimaryBtn: "查看项目",
+      heroSecondaryBtn: "联系我",
+      heroCardTitle: "最近在做什么",
+      heroCardText:
+        "最让我兴奋的是叙事与系统如何互相支撑——用规则和循环承载情绪与故事。最近在 Unity 里用小原型探索这些；如果你同样在意叙事与机制两端，欢迎来聊。",
+      projectsEyebrow: "作品集",
+      projectsTitle: "项目",
+      projectsSubtitle:
+        "最新作品优先——首页展示四个精选。打开完整列表查看全部项目（按时间从新到旧）。",
+      viewAllProjects: "查看全部项目",
+      projectsAllTitle: "全部项目",
+      projectsAllSubtitle: "按时间顺序排列，从新到旧。",
+      project1Status: "UX · UI",
+      project1Tag: "交互设计",
+      project1Title: "CAMI",
+      project1Desc:
+        "CAMI 是一个「友好的 AI 伴侣」概念：通过用户调研、人物画像、用户旅程、信息架构、线框图与界面设计来推进，并围绕误信息、认知误区与 AI 焦虑等现实议题展开讨论。",
+      project1Tools: "Figma · 用户研究 · 界面设计",
+      project1ChipRole: "独立",
+      project1ChipFocus: "AI 素养",
+      project1ChipType: "产品",
+      project2Status: "桌游",
+      project2Tag: "棋盘",
+      project2Title: "Picnic Panic!",
+      project2Desc:
+        "一款受蚂蚁启发的合作类桌游：在暴雨来临前收集食物、穿越后院障碍，结合移动、战斗、道具与对手规则，并设定清晰的胜负条件。",
+      project2Tools: "游戏设计 · 规则 · 试玩迭代",
+      project2ChipRole: "设计",
+      project2ChipFocus: "合作",
+      project2ChipType: "原型",
+      project3Status: "已发布",
+      project3Tag: "2D · 像素 · 射击",
+      project3Title: "Overtale",
+      project3Desc:
+        "Overtale 是一款用 Unity 制作的 2D 像素平台射击游戏（2024）：在紧凑关卡里移动、跳跃与射击，强调可读的操作反馈与战斗节奏。",
+      project3Tools: "Unity · C# · 像素美术 · 2D 平台射击",
+      project3ChipRole: "独立开发",
+      project3ChipType: "2D",
+      project4Status: "Unity 3D",
+      project4Tag: "叙事",
+      project4Title: "Traveler",
+      project4Desc:
+        "Traveler 是一款 Unity 3D 叙事向作品：一名罪犯在通往天堂或地狱的路径之间做出选择，通过探索与剧情节点呈现道德抉择。",
+      project4Tools: "Unity · 3D · 叙事驱动",
+      project4ChipRole: "独立开发",
+      project4ChipFocus: "抉择",
+      project4ChipType: "3D",
+      project5Status: "Unity 3D",
+      project5Tag: "3D",
+      project5Title: "After They're Gone",
+      project5Desc:
+        "After They're Gone 是一款 3D Unity 游戏，讲述在人类消失后的世界里，机器人拾荒与清理的故事：一座反乌托邦城市中，环卫工作完全交给机器，通过探索与环境叙事呈现世界。",
+      project5Tools: "Unity · 3D · 环境叙事",
+      project5ChipRole: "独立",
+      project5ChipFocus: "探索",
+      project5ChipType: "机器人",
+      projectHoverPreviewHint: "悬停预览",
+      projectDemoLink: "在线演示",
+      projectCodeLink: "源码",
+      aboutEyebrow: "关于",
+      aboutTitle: "关于我",
+      aboutP1:
+        "我是 USC 的大一游戏设计学生。最投入的是叙事与系统设计——用情感、意义，以及玩家能感知到的规则、循环与反馈来表达。",
+      aboutP2:
+        "最喜欢机制与叙事同向发力：系统清晰，剧情节点靠设计托住，而不只靠台词。",
+      aboutP3:
+        "最近在 Unity 做小原型，在同一套可玩循环里试叙事与系统，快速迭代。",
+      aboutP4:
+        "一直在向优秀作品学习如何把故事与系统拧在一起；也欢迎同样在意这条线的人交流。",
+      aboutStatGamesLabel: "完成项目",
+      aboutStatJamValue: "1",
+      aboutStatJamLabel: "游戏 Jam",
+      aboutStatYearsValue: "3+",
+      aboutStatYearsLabel: "学习年限",
+      aboutStatIdeasValue: "±∞",
+      aboutStatIdeasLabel: "进行中想法",
+      skillsTitle: "工具与技能",
+      aboutPhotoAlt: "David Bao 在育碧上海",
+      contactTitle: "欢迎联系",
+      contactSubtitle: "你可以通过邮箱联系我、在 LinkedIn 上找到我，或直接给我打电话。",
+      contactLinkedInLabel: "LinkedIn",
+      contactPhoneLabel: "电话：2134490511",
+      galleryBack: "← 返回项目",
+      galleryCamiHeading: "CAMI",
+      galleryCamiLede: "以下为作品集 PDF 中的页面顺序导出（原 PDF 第 2–8 页）。",
+      galleryPicnicHeading: "Picnic Panic!",
+      galleryPicnicLede: "以下为作品集 PDF 中的页面顺序导出（原 PDF 第 9–13 页）。",
+      footerText: "David Bao 使用 Astro 构建"
+    }
+  };
+
+  const langButtons = document.querySelectorAll("[data-lang]");
+  const i18nNodes = document.querySelectorAll("[data-i18n]");
+
+  const setLanguage = (lang) => {
+    i18nNodes.forEach((node) => {
+      const key = node.getAttribute("data-i18n");
+      if (key && translations[lang][key]) {
+        node.textContent = translations[lang][key];
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-alt]").forEach((node) => {
+      const key = node.getAttribute("data-i18n-alt");
+      if (key && translations[lang][key]) {
+        node.setAttribute("alt", translations[lang][key]);
+      }
+    });
+
+    document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+
+    langButtons.forEach((button) => {
+      button.classList.toggle("active", button.getAttribute("data-lang") === lang);
+    });
+  };
+
+  langButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const lang = button.getAttribute("data-lang");
+      if (lang) setLanguage(lang);
+    });
+  });
+
+  setLanguage("en");
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealItems = document.querySelectorAll(".reveal-item");
+
+  if (prefersReducedMotion) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -20px 0px" }
+    );
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  }
+
+  const canHoverPreview = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const previewMediaNodes = document.querySelectorAll("[data-preview-video-id]");
+
+  previewMediaNodes.forEach((mediaNode) => {
+    const slot = mediaNode.querySelector("[data-preview-slot]");
+    const videoId = mediaNode.getAttribute("data-preview-video-id");
+    const videoTitle = mediaNode.getAttribute("data-preview-title") || "Project preview";
+    const previewMode = mediaNode.getAttribute("data-preview-mode") || "autoplay";
+    const previewStart = mediaNode.getAttribute("data-preview-start");
+    const previewEnd = mediaNode.getAttribute("data-preview-end");
+    const previewSegments = mediaNode.getAttribute("data-preview-segments");
+    let iframe = null;
+    let segmentTimerId = null;
+    let repeatTimerId = null;
+    let currentSegmentIndex = 0;
+
+    if (!slot || !videoId) return;
+
+    const segments = previewSegments
+      ? previewSegments
+          .split(",")
+          .map((rawSegment) => rawSegment.trim())
+          .map((segment) => {
+            const [startRaw, endRaw] = segment.split("-");
+            const start = Number(startRaw);
+            const end = Number(endRaw);
+            return Number.isFinite(start) && Number.isFinite(end) && end > start
+              ? { start, end }
+              : null;
+          })
+          .filter(Boolean)
+      : [];
+
+    const buildIframeSrc = (startValue, endValue) => {
+      const params = new URLSearchParams({
+        autoplay: "1",
+        mute: "1",
+        controls: "0",
+        modestbranding: "1",
+        rel: "0",
+        playsinline: "1"
+      });
+
+      const hasClipBounds =
+        typeof startValue === "number" &&
+        typeof endValue === "number" &&
+        Number.isFinite(startValue) &&
+        Number.isFinite(endValue);
+
+      if (typeof startValue === "number" && Number.isFinite(startValue)) {
+        params.set("start", String(Math.floor(startValue)));
+      }
+      if (typeof endValue === "number" && Number.isFinite(endValue)) {
+        params.set("end", String(Math.ceil(endValue)));
+      }
+
+      if (!hasClipBounds) {
+        params.set("loop", "1");
+        params.set("playlist", videoId);
+      }
+
+      return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+    };
+
+    const renderIframe = (startValue, endValue) => {
+      if (iframe) {
+        iframe.remove();
+        iframe = null;
+      }
+
+      iframe = document.createElement("iframe");
+      iframe.src = buildIframeSrc(startValue, endValue);
+      iframe.title = videoTitle;
+      iframe.loading = "lazy";
+      iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      slot.appendChild(iframe);
+      mediaNode.classList.add("is-playing");
+    };
+
+    const clearTimers = () => {
+      if (segmentTimerId) {
+        window.clearTimeout(segmentTimerId);
+        segmentTimerId = null;
+      }
+      if (repeatTimerId) {
+        window.clearTimeout(repeatTimerId);
+        repeatTimerId = null;
+      }
+    };
+
+    const playSingleClip = () => {
+      const singleStart = previewStart ? Number(previewStart) : NaN;
+      const singleEnd = previewEnd ? Number(previewEnd) : NaN;
+
+      if (Number.isFinite(singleStart) && Number.isFinite(singleEnd)) {
+        renderIframe(singleStart, singleEnd);
+        repeatTimerId = window.setTimeout(() => {
+          repeatTimerId = null;
+          playSingleClip();
+        }, Math.max(800, (singleEnd - singleStart) * 1000));
+        return;
+      }
+
+      renderIframe(
+        Number.isFinite(singleStart) ? singleStart : undefined,
+        Number.isFinite(singleEnd) ? singleEnd : undefined
+      );
+    };
+
+    const playCurrentSegment = () => {
+      if (!segments.length) {
+        playSingleClip();
+        return;
+      }
+
+      const currentSegment = segments[currentSegmentIndex];
+      renderIframe(currentSegment.start, currentSegment.end);
+
+      const segmentDurationMs = Math.max(800, (currentSegment.end - currentSegment.start) * 1000);
+      segmentTimerId = window.setTimeout(() => {
+        segmentTimerId = null;
+        currentSegmentIndex = (currentSegmentIndex + 1) % segments.length;
+        playCurrentSegment();
+      }, segmentDurationMs);
+    };
+
+    const startPreview = () => {
+      if (iframe || segmentTimerId || repeatTimerId) return;
+      currentSegmentIndex = 0;
+      playCurrentSegment();
+    };
+
+    const stopPreview = () => {
+      clearTimers();
+      if (iframe) {
+        iframe.remove();
+        iframe = null;
+      }
+      mediaNode.classList.remove("is-playing");
+    };
+
+    if (previewMode === "hover") {
+      if (!canHoverPreview) return;
+      mediaNode.addEventListener("mouseenter", startPreview);
+      mediaNode.addEventListener("mouseleave", stopPreview);
+      mediaNode.addEventListener("focusin", startPreview);
+      mediaNode.addEventListener("focusout", stopPreview);
+      return;
+    }
+
+    const previewObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            startPreview();
+          } else {
+            stopPreview();
+          }
+        });
+      },
+      { threshold: 0.35, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    previewObserver.observe(mediaNode);
+  });
+</script>

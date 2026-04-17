@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/portfolio/NavBar.astro";
+import SiteFooter from "../../components/portfolio/SiteFooter.astro";
+import LanguageScript from "../../components/portfolio/LanguageScript.astro";
+
+const images = Array.from({ length: 5 }, (_, i) => ({
+  src: `/projects/picnic-panic/${String(i + 1).padStart(2, "0")}.png`,
+  n: i + 1,
+}));
+---
+
+<Layout
+  title="Picnic Panic! | David Bao"
+  description="Picnic Panic! — ant-inspired board game design slides from portfolio."
+>
+  <NavBar />
+
+  <main class="container project-detail">
+    <p class="project-detail-back">
+      <a href="/#projects" data-i18n="galleryBack">← Back to projects</a>
+    </p>
+    <h1 class="section-title" data-i18n="galleryPicnicHeading">Picnic Panic!</h1>
+    <p class="project-detail-lede" data-i18n="galleryPicnicLede">
+      Slides exported from my portfolio PDF in order (original pages 9–13).
+    </p>
+    <div class="gallery-stack">
+      {
+        images.map((img) => (
+          <figure class="gallery-figure">
+            <img
+              src={img.src}
+              alt={`Picnic Panic portfolio page ${img.n}`}
+              loading="lazy"
+              decoding="async"
+              width="1280"
+              height="720"
+            />
+          </figure>
+        ))
+      }
+    </div>
+  </main>
+
+  <SiteFooter />
+  <LanguageScript />
+</Layout>

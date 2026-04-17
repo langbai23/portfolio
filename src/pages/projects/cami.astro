@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/portfolio/NavBar.astro";
+import SiteFooter from "../../components/portfolio/SiteFooter.astro";
+import LanguageScript from "../../components/portfolio/LanguageScript.astro";
+
+const images = Array.from({ length: 7 }, (_, i) => ({
+  src: `/projects/cami/${String(i + 1).padStart(2, "0")}.png`,
+  n: i + 1,
+}));
+---
+
+<Layout
+  title="CAMI | David Bao"
+  description="CAMI — friendly AI companion UX/UI case study slides from portfolio."
+>
+  <NavBar />
+
+  <main class="container project-detail">
+    <p class="project-detail-back">
+      <a href="/#projects" data-i18n="galleryBack">← Back to projects</a>
+    </p>
+    <h1 class="section-title" data-i18n="galleryCamiHeading">CAMI</h1>
+    <p class="project-detail-lede" data-i18n="galleryCamiLede">
+      Slides exported from my portfolio PDF in order (original pages 2–8).
+    </p>
+    <div class="gallery-stack">
+      {
+        images.map((img) => (
+          <figure class="gallery-figure">
+            <img
+              src={img.src}
+              alt={`CAMI portfolio page ${img.n}`}
+              loading="lazy"
+              decoding="async"
+              width="1280"
+              height="720"
+            />
+          </figure>
+        ))
+      }
+    </div>
+  </main>
+
+  <SiteFooter />
+  <LanguageScript />
+</Layout>
