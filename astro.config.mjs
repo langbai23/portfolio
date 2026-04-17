@@ -16,4 +16,5 @@ const site =
 // https://astro.build/config
 export default defineConfig({
   site,
+  output: 'static',
 });
