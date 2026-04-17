@@ -41,13 +41,13 @@ const resolvedOgImage = ogImage
 
 <style is:global>
   :root {
-    --bg: #0f0f14;
-    --card: #171a22;
-    --text: #f5f7fb;
-    --muted: #a7b0c0;
-    --accent: #8b5cf6;
-    --accent-2: #ec4899;
-    --border: rgba(255, 255, 255, 0.08);
+    --bg: #0a0f24;
+    --card: #11182f;
+    --text: #eef2ff;
+    --muted: #9aa7c7;
+    --accent: #7c6cff;
+    --accent-2: #4f8dff;
+    --border: rgba(170, 190, 255, 0.1);
   }
 
   * {
@@ -63,8 +63,9 @@ const resolvedOgImage = ogImage
   body {
     font-family: Arial, sans-serif;
     background:
-      radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 30%),
-      radial-gradient(circle at top right, rgba(236, 72, 153, 0.14), transparent 25%),
+      radial-gradient(circle at 12% 8%, rgba(124, 108, 255, 0.26), transparent 34%),
+      radial-gradient(circle at 88% 4%, rgba(79, 141, 255, 0.18), transparent 30%),
+      radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.12), transparent 42%),
       var(--bg);
     color: var(--text);
     line-height: 1.6;
@@ -90,7 +91,7 @@ const resolvedOgImage = ogImage
     position: sticky;
     top: 0;
     backdrop-filter: blur(12px);
-    background: rgba(15, 15, 20, 0.75);
+    background: rgba(10, 15, 36, 0.82);
     border-bottom: 1px solid var(--border);
     z-index: 10;
   }
@@ -137,8 +138,8 @@ const resolvedOgImage = ogImage
 
   .lang-btn.active {
     color: var(--text);
-    border-color: rgba(139, 92, 246, 0.5);
-    background: rgba(139, 92, 246, 0.16);
+    border-color: rgba(124, 108, 255, 0.5);
+    background: rgba(124, 108, 255, 0.16);
   }
 
   .lang-btn:hover {
@@ -217,11 +218,11 @@ const resolvedOgImage = ogImage
   }
 
   .pill-tag:hover {
-    border-color: rgba(139, 92, 246, 0.75);
+    border-color: rgba(124, 108, 255, 0.75);
     box-shadow:
-      0 0 0 1px rgba(139, 92, 246, 0.25),
-      0 0 18px rgba(139, 92, 246, 0.28);
-    background: rgba(139, 92, 246, 0.08);
+      0 0 0 1px rgba(124, 108, 255, 0.25),
+      0 0 18px rgba(124, 108, 255, 0.28);
+    background: rgba(124, 108, 255, 0.08);
   }
 
   .button-row {
@@ -341,7 +342,7 @@ const resolvedOgImage = ogImage
   }
 
   .project-media-link:focus-visible {
-    outline: 2px solid rgba(139, 92, 246, 0.7);
+    outline: 2px solid rgba(124, 108, 255, 0.7);
     outline-offset: 3px;
   }
 
@@ -361,7 +362,7 @@ const resolvedOgImage = ogImage
 
   .project-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(139, 92, 246, 0.45);
+    border-color: rgba(124, 108, 255, 0.45);
   }
 
   .project-media .preview-slot {
@@ -424,9 +425,9 @@ const resolvedOgImage = ogImage
     text-transform: uppercase;
     padding: 4px 10px;
     border-radius: 999px;
-    border: 1px solid rgba(139, 92, 246, 0.35);
+    border: 1px solid rgba(124, 108, 255, 0.35);
     color: #d7c8ff;
-    background: rgba(139, 92, 246, 0.12);
+    background: rgba(124, 108, 255, 0.12);
   }
 
   .project-year {
@@ -496,8 +497,8 @@ const resolvedOgImage = ogImage
   }
 
   .about-box:hover {
-    border-color: rgba(139, 92, 246, 0.4);
-    box-shadow: 0 0 28px rgba(139, 92, 246, 0.12);
+    border-color: rgba(124, 108, 255, 0.4);
+    box-shadow: 0 0 28px rgba(124, 108, 255, 0.12);
   }
 
   .about-layout {
@@ -557,11 +558,11 @@ const resolvedOgImage = ogImage
   }
 
   .stat-card:hover {
-    border-color: rgba(139, 92, 246, 0.55);
+    border-color: rgba(124, 108, 255, 0.55);
     box-shadow:
-      0 0 0 1px rgba(139, 92, 246, 0.15),
-      0 0 20px rgba(139, 92, 246, 0.22);
-    background: rgba(139, 92, 246, 0.06);
+      0 0 0 1px rgba(124, 108, 255, 0.15),
+      0 0 20px rgba(124, 108, 255, 0.22);
+    background: rgba(124, 108, 255, 0.06);
   }
 
   .stat-value {
@@ -594,7 +595,7 @@ const resolvedOgImage = ogImage
 
   .contact-box {
     text-align: center;
-    background: linear-gradient(180deg, rgba(139, 92, 246, 0.14), rgba(236, 72, 153, 0.08));
+    background: linear-gradient(180deg, rgba(124, 108, 255, 0.14), rgba(79, 141, 255, 0.08));
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 40px 24px;
