@@ -161,8 +161,16 @@ const { title, description } = Astro.props;
     color: var(--muted);
     max-width: 580px;
     margin-top: -6px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     line-height: 1.45;
+  }
+
+  .hero .hero-intro {
+    font-size: 1.02rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 14px;
+    line-height: 1.55;
   }
 
   .hero-skill-pills {
@@ -244,11 +252,6 @@ const { title, description } = Astro.props;
 
   section {
     padding: 84px 0;
-  }
-
-  section:not(.hero) {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 900px;
   }
 
   .section-title {
@@ -725,6 +728,11 @@ const { title, description } = Astro.props;
 
     .hero .hero-tagline {
       font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    .hero .hero-intro {
+      font-size: 0.95rem;
       margin-bottom: 12px;
     }
 

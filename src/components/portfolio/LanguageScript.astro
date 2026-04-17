@@ -7,6 +7,8 @@
       heroEyebrow: "Game Developer · USC",
       heroTagline:
         "Storytelling & system design · Game development · USC undergrad",
+      heroIntro:
+        "USC freshman—making games with a love for narrative craft and systems that support it. More in About.",
       heroPrimaryBtn: "View Projects",
       heroSecondaryBtn: "Contact Me",
       heroCardTitle: "Lately",
@@ -102,6 +104,8 @@
       navContact: "联系",
       heroEyebrow: "游戏开发者 · USC",
       heroTagline: "热爱叙事与系统设计 · 游戏开发 · USC 本科",
+      heroIntro:
+        "USC 大一，做游戏，重叙事、也重系统设计。更完整的介绍见下方 About。",
       heroPrimaryBtn: "查看项目",
       heroSecondaryBtn: "联系我",
       heroCardTitle: "最近在做什么",
@@ -226,6 +230,20 @@
   });
 
   setLanguage("en");
+
+  // Home links use /#projects, /#about, etc. The hash stays in the URL, so refresh jumps to that section.
+  // On full reload only, strip the hash and scroll to the top so refresh returns to the hero.
+  window.addEventListener("pageshow", () => {
+    const nav = performance.getEntriesByType("navigation")[0];
+    const isReload =
+      (nav && nav.type === "reload") ||
+      (typeof performance.navigation !== "undefined" && performance.navigation.type === 1);
+    if (!isReload || !window.location.hash) return;
+    const path = window.location.pathname;
+    if (path !== "/" && !path.endsWith("/index.html")) return;
+    history.replaceState(null, "", `${path}${window.location.search}`);
+    window.scrollTo(0, 0);
+  });
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealItems = document.querySelectorAll(".reveal-item");
