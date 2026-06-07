@@ -33,6 +33,9 @@ const resolvedOgImage = ogImage
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />
@@ -61,13 +64,28 @@ const resolvedOgImage = ogImage
   }
 
   body {
-    font-family: Arial, sans-serif;
-    background:
-      radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 30%),
-      radial-gradient(circle at top right, rgba(236, 72, 153, 0.14), transparent 25%),
-      var(--bg);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.22), transparent 35%),
+      radial-gradient(circle at 85% 8%, rgba(236, 72, 153, 0.16), transparent 28%);
+    animation: bg-glow 18s ease-in-out infinite alternate;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  @keyframes bg-glow {
+    0% { opacity: 1; transform: scale(1) translate(0, 0); }
+    50% { opacity: 0.82; transform: scale(1.06) translate(1.5%, 0.8%); }
+    100% { opacity: 1; transform: scale(1.02) translate(-0.8%, 0.4%); }
   }
 
   a {
@@ -149,7 +167,8 @@ const resolvedOgImage = ogImage
     min-height: 85vh;
     display: grid;
     align-items: center;
-    padding: 72px 0 40px;
+    padding: 72px 0 80px;
+    position: relative;
   }
 
   .hero-grid {
@@ -169,7 +188,15 @@ const resolvedOgImage = ogImage
   h1 {
     font-size: clamp(2.8rem, 7vw, 5.5rem);
     line-height: 0.95;
+    letter-spacing: -0.03em;
     margin-bottom: 18px;
+  }
+
+  .hero-name {
+    background: linear-gradient(135deg, #ffffff 30%, rgba(139, 92, 246, 0.85) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .hero .hero-tagline {
@@ -248,12 +275,63 @@ const resolvedOgImage = ogImage
     transform: translateY(-2px);
   }
 
+  .hero-scroll-cue {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--muted);
+    opacity: 0.5;
+    text-decoration: none;
+    animation: scroll-bounce 2.5s ease-in-out infinite;
+    transition: opacity 0.2s ease;
+  }
+
+  .hero-scroll-cue:hover {
+    opacity: 0.9;
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .hero-card-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .hero-card-items li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 0.93rem;
+    line-height: 1.45;
+  }
+
+  .hero-card-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+
   .hero-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)) padding-box,
+      linear-gradient(135deg, rgba(139,92,246,0.55), rgba(236,72,153,0.28), rgba(255,255,255,0.06)) border-box;
+    border: 1px solid transparent;
     border-radius: 24px;
     padding: 28px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 0 40px rgba(139,92,246,0.08);
   }
 
   .hero-card h3 {
@@ -272,6 +350,7 @@ const resolvedOgImage = ogImage
 
   .section-title {
     font-size: 2rem;
+    letter-spacing: -0.02em;
     margin-bottom: 12px;
   }
 
@@ -594,10 +673,13 @@ const resolvedOgImage = ogImage
 
   .contact-box {
     text-align: center;
-    background: linear-gradient(180deg, rgba(139, 92, 246, 0.14), rgba(236, 72, 153, 0.08));
-    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(139, 92, 246, 0.16), rgba(236, 72, 153, 0.09)) padding-box,
+      linear-gradient(135deg, rgba(139,92,246,0.45), rgba(236,72,153,0.22)) border-box;
+    border: 1px solid transparent;
     border-radius: 24px;
-    padding: 40px 24px;
+    padding: 56px 24px;
+    box-shadow: 0 0 60px rgba(139, 92, 246, 0.1);
   }
 
   .contact-actions {
@@ -735,6 +817,11 @@ const resolvedOgImage = ogImage
     .hero {
       min-height: auto;
       padding-top: 52px;
+      padding-bottom: 40px;
+    }
+
+    .hero-scroll-cue {
+      display: none;
     }
 
     h1 {
@@ -796,6 +883,14 @@ const resolvedOgImage = ogImage
 
     * {
       transition: none !important;
+      animation: none !important;
+    }
+
+    body::before {
+      animation: none !important;
+    }
+
+    .hero-scroll-cue {
       animation: none !important;
     }
 
