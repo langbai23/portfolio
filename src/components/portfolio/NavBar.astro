@@ -1,11 +1,22 @@
+---
+import { SITE } from "../../data/site";
+---
+
 <nav>
   <div class="container nav-inner">
-    <a href="/" class="logo">David Bao</a>
+    <a href="/" class="logo">{SITE.name}</a>
     <div class="nav-controls">
       <div class="nav-links">
         <a href="/#projects" data-i18n="navProjects">Projects</a>
         <a href="/#about" data-i18n="navAbout">About</a>
         <a href="/#contact" data-i18n="navContact">Contact</a>
+        {
+          SITE.resumeUrl && (
+            <a href={SITE.resumeUrl} target="_blank" rel="noreferrer" data-i18n="navResume">
+              Resume
+            </a>
+          )
+        }
       </div>
       <div class="lang-switch">
         <button class="lang-btn active" type="button" data-lang="en">EN</button>

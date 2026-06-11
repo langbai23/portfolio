@@ -1,76 +1,37 @@
 <script>
+  // @ts-nocheck — plain browser script, no types.
+  /**
+   * Two translation mechanisms:
+   *  1. Static UI strings → `data-i18n="key"` + the dictionary below.
+   *  2. Project content   → `data-i18n-dual` + `data-en` / `data-zh`
+   *     attributes rendered from src/data/projects.ts (see T.astro).
+   */
   const translations = {
     en: {
       navProjects: "Projects",
       navAbout: "About",
       navContact: "Contact",
-      heroEyebrow: "Game Developer · USC",
-      heroTagline:
-        "Storytelling & system design · Game development · USC undergrad",
+      navResume: "Resume",
+      heroEyebrow: "Game Designer & Developer · USC",
+      heroTagline: "Stories told through systems.",
       heroIntro:
-        "USC freshman—making games with a love for narrative craft and systems that support it. More in About.",
+        "USC freshman making games where narrative craft and system design pull in the same direction. Unity, tabletop, and everything between.",
       heroPrimaryBtn: "View Projects",
       heroSecondaryBtn: "Contact Me",
-      heroCardTitle: "Lately",
-      heroCardText:
-        "I'm most excited when narrative and systems reinforce each other—rules and loops that carry emotion and story. Lately I'm exploring that in Unity through small prototypes, and I'd love to connect with others who care about both.",
+      heroCardTitle: "Currently",
       heroCardItem1: "Prototyping narrative systems in Unity 3D",
       heroCardItem2: "Studying Game Design at USC · first year",
       heroCardItem3: "Exploring where mechanics and story converge",
-      projectsEyebrow: "Portfolio",
+      projectsEyebrow: "Selected Work",
       projectsTitle: "Projects",
       projectsSubtitle:
-        "Latest work first—here are four highlights. Open the full archive for everything, newest to oldest.",
+        "Latest work first. Each project opens a case study with my role, process, and footage.",
+      featuredLabel: "Latest",
+      caseStudyCta: "Read case study",
       viewAllProjects: "View all projects",
       projectsAllTitle: "All projects",
       projectsAllSubtitle: "Complete list in chronological order, newest to oldest.",
-      project1Status: "UX · UI",
-      project1Tag: "Interaction Design",
-      project1Title: "CAMI",
-      project1Desc:
-        "A friendly AI companion concept explored through user research, personas, journey mapping, information architecture, wireframes, and interface design—framed around real-world conversations about misinformation, misconceptions, and AI anxiety.",
-      project1Tools: "Figma · UX research · UI design",
-      project1ChipRole: "Solo",
-      project1ChipFocus: "AI literacy",
-      project1ChipType: "Product",
-      project2Status: "Tabletop",
-      project2Tag: "Board Game",
-      project2Title: "Picnic Panic!",
-      project2Desc:
-        "An ant-inspired cooperative board game: escape the storm, gather food, and survive backyard hazards—built around movement, combat, items, rivals, and clear win/lose conditions.",
-      project2Tools: "Game design · Rules · Playtesting",
-      project2ChipRole: "Designer",
-      project2ChipFocus: "Co-op",
-      project2ChipType: "Prototype",
-      project3Status: "Released",
-      project3Tag: "2D · Pixel · Shooter",
-      project3Title: "Overtale",
-      project3Desc:
-        "Overtale is a 2D pixel-art platform shooter made in Unity (2024): move, jump, and shoot through compact levels built around readable combat and flow.",
-      project3Tools: "Unity · C# · Pixel art · 2D platform shooter",
-      project3ChipRole: "Solo Dev",
-      project3ChipType: "2D",
-      project4Status: "Unity 3D",
-      project4Tag: "Narrative",
-      project4Title: "Traveler",
-      project4Desc:
-        "Traveler is a Unity 3D narrative game about a criminal choosing a path toward heaven or hell—exploring moral choice through exploration and story beats.",
-      project4Tools: "Unity · 3D · Story-driven",
-      project4ChipRole: "Solo Dev",
-      project4ChipFocus: "Choice",
-      project4ChipType: "3D",
-      project5Status: "Unity 3D",
-      project5Tag: "3D",
-      project5Title: "After They're Gone",
-      project5Desc:
-        "After They're Gone is a 3D Unity game about robots salvaging a world without humans—a dystopian city where sanitation falls entirely to machines, told through exploration and environmental storytelling.",
-      project5Tools: "Unity · 3D · Environment storytelling",
-      project5ChipRole: "Solo",
-      project5ChipFocus: "Exploration",
-      project5ChipType: "Robots",
       projectHoverPreviewHint: "Hover to preview",
-      projectDemoLink: "Live Demo",
-      projectCodeLink: "Source Code",
       aboutEyebrow: "About",
       aboutTitle: "About Me",
       aboutP1:
@@ -90,97 +51,55 @@
       aboutStatIdeasLabel: "Ideas in Progress",
       skillsTitle: "Tools & Skills",
       aboutPhotoAlt: "David Bao at Ubisoft Shanghai",
+      contactEyebrow: "Contact",
       contactTitle: "Let's Connect",
-      contactSubtitle: "You can reach me by email, connect on LinkedIn, or call me directly.",
+      contactSubtitle:
+        "Open to game design and development internships. Reach me by email, or connect on LinkedIn.",
       contactLinkedInLabel: "LinkedIn",
-      contactPhoneLabel: "(213) 449-0511",
-      galleryBack: "← Back to projects",
-      galleryCamiHeading: "CAMI",
-      galleryCamiLede: "Slides exported from my portfolio PDF in order (original pages 2–8).",
-      galleryPicnicHeading: "Picnic Panic!",
-      galleryPicnicLede: "Slides exported from my portfolio PDF in order (original pages 9–13).",
-      footerText: "Built by David Bao with Astro"
+      contactGithubLabel: "GitHub",
+      contactResumeLabel: "Resume (PDF)",
+      csBack: "← Back to projects",
+      csOverview: "Overview",
+      csRoleLabel: "Role",
+      csEngineLabel: "Engine",
+      csYearLabel: "Year",
+      csWatchOnYoutube: "Watch full video on YouTube ↗",
+      csInProgressTitle: "Full case study in progress",
+      csInProgressBody:
+        "A deeper write-up of this project—design decisions, process, and screenshots—is on its way.",
+      footerText: "Built by David Bao with Astro",
     },
     zh: {
       navProjects: "项目",
       navAbout: "关于",
       navContact: "联系",
-      heroEyebrow: "游戏开发者 · USC",
-      heroTagline: "热爱叙事与系统设计 · 游戏开发 · USC 本科",
+      navResume: "简历",
+      heroEyebrow: "游戏设计师与开发者 · USC",
+      heroTagline: "用系统讲故事。",
       heroIntro:
-        "USC 大一，做游戏，重叙事、也重系统设计。更完整的介绍见下方 About。",
+        "USC 大一，做游戏——让叙事与系统设计朝同一个方向发力。Unity、桌游，以及两者之间的一切。",
       heroPrimaryBtn: "查看项目",
       heroSecondaryBtn: "联系我",
-      heroCardTitle: "最近在做什么",
-      heroCardText:
-        "最让我兴奋的是叙事与系统如何互相支撑——用规则和循环承载情绪与故事。最近在 Unity 里用小原型探索这些；如果你同样在意叙事与机制两端，欢迎来聊。",
+      heroCardTitle: "最近在做",
       heroCardItem1: "在 Unity 3D 里打造叙事系统原型",
       heroCardItem2: "就读于 USC 游戏设计专业 · 大一",
       heroCardItem3: "寻找机制与故事的交汇点",
-      projectsEyebrow: "作品集",
+      projectsEyebrow: "精选作品",
       projectsTitle: "项目",
-      projectsSubtitle:
-        "最新作品优先——首页展示四个精选。打开完整列表查看全部项目（按时间从新到旧）。",
+      projectsSubtitle: "最新作品优先。每个项目都有 case study：我的角色、过程与实机画面。",
+      featuredLabel: "最新",
+      caseStudyCta: "阅读 case study",
       viewAllProjects: "查看全部项目",
       projectsAllTitle: "全部项目",
       projectsAllSubtitle: "按时间顺序排列，从新到旧。",
-      project1Status: "UX · UI",
-      project1Tag: "交互设计",
-      project1Title: "CAMI",
-      project1Desc:
-        "CAMI 是一个「友好的 AI 伴侣」概念：通过用户调研、人物画像、用户旅程、信息架构、线框图与界面设计来推进，并围绕误信息、认知误区与 AI 焦虑等现实议题展开讨论。",
-      project1Tools: "Figma · 用户研究 · 界面设计",
-      project1ChipRole: "独立",
-      project1ChipFocus: "AI 素养",
-      project1ChipType: "产品",
-      project2Status: "桌游",
-      project2Tag: "棋盘",
-      project2Title: "Picnic Panic!",
-      project2Desc:
-        "一款受蚂蚁启发的合作类桌游：在暴雨来临前收集食物、穿越后院障碍，结合移动、战斗、道具与对手规则，并设定清晰的胜负条件。",
-      project2Tools: "游戏设计 · 规则 · 试玩迭代",
-      project2ChipRole: "设计",
-      project2ChipFocus: "合作",
-      project2ChipType: "原型",
-      project3Status: "已发布",
-      project3Tag: "2D · 像素 · 射击",
-      project3Title: "Overtale",
-      project3Desc:
-        "Overtale 是一款用 Unity 制作的 2D 像素平台射击游戏（2024）：在紧凑关卡里移动、跳跃与射击，强调可读的操作反馈与战斗节奏。",
-      project3Tools: "Unity · C# · 像素美术 · 2D 平台射击",
-      project3ChipRole: "独立开发",
-      project3ChipType: "2D",
-      project4Status: "Unity 3D",
-      project4Tag: "叙事",
-      project4Title: "Traveler",
-      project4Desc:
-        "Traveler 是一款 Unity 3D 叙事向作品：一名罪犯在通往天堂或地狱的路径之间做出选择，通过探索与剧情节点呈现道德抉择。",
-      project4Tools: "Unity · 3D · 叙事驱动",
-      project4ChipRole: "独立开发",
-      project4ChipFocus: "抉择",
-      project4ChipType: "3D",
-      project5Status: "Unity 3D",
-      project5Tag: "3D",
-      project5Title: "After They're Gone",
-      project5Desc:
-        "After They're Gone 是一款 3D Unity 游戏，讲述在人类消失后的世界里，机器人拾荒与清理的故事：一座反乌托邦城市中，环卫工作完全交给机器，通过探索与环境叙事呈现世界。",
-      project5Tools: "Unity · 3D · 环境叙事",
-      project5ChipRole: "独立",
-      project5ChipFocus: "探索",
-      project5ChipType: "机器人",
       projectHoverPreviewHint: "悬停预览",
-      projectDemoLink: "在线演示",
-      projectCodeLink: "源码",
       aboutEyebrow: "关于",
       aboutTitle: "关于我",
       aboutP1:
         "我是 USC 的大一游戏设计学生。最投入的是叙事与系统设计——用情感、意义，以及玩家能感知到的规则、循环与反馈来表达。",
-      aboutP2:
-        "最喜欢机制与叙事同向发力：系统清晰，剧情节点靠设计托住，而不只靠台词。",
-      aboutP3:
-        "最近在 Unity 做小原型，在同一套可玩循环里试叙事与系统，快速迭代。",
-      aboutP4:
-        "一直在向优秀作品学习如何把故事与系统拧在一起；也欢迎同样在意这条线的人交流。",
+      aboutP2: "最喜欢机制与叙事同向发力：系统清晰，剧情节点靠设计托住，而不只靠台词。",
+      aboutP3: "最近在 Unity 做小原型，在同一套可玩循环里试叙事与系统，快速迭代。",
+      aboutP4: "一直在向优秀作品学习如何把故事与系统拧在一起；也欢迎同样在意这条线的人交流。",
       aboutStatGamesLabel: "完成项目",
       aboutStatJamValue: "1",
       aboutStatJamLabel: "游戏 Jam",
@@ -190,35 +109,44 @@
       aboutStatIdeasLabel: "进行中想法",
       skillsTitle: "工具与技能",
       aboutPhotoAlt: "David Bao 在育碧上海",
+      contactEyebrow: "联系",
       contactTitle: "欢迎联系",
-      contactSubtitle: "你可以通过邮箱联系我、在 LinkedIn 上找到我，或直接给我打电话。",
+      contactSubtitle: "正在寻找游戏设计与开发方向的实习机会。可以通过邮箱或 LinkedIn 联系我。",
       contactLinkedInLabel: "LinkedIn",
-      contactPhoneLabel: "(213) 449-0511",
-      galleryBack: "← 返回项目",
-      galleryCamiHeading: "CAMI",
-      galleryCamiLede: "以下为作品集 PDF 中的页面顺序导出（原 PDF 第 2–8 页）。",
-      galleryPicnicHeading: "Picnic Panic!",
-      galleryPicnicLede: "以下为作品集 PDF 中的页面顺序导出（原 PDF 第 9–13 页）。",
-      footerText: "David Bao 使用 Astro 构建"
-    }
+      contactGithubLabel: "GitHub",
+      contactResumeLabel: "简历 (PDF)",
+      csBack: "← 返回项目",
+      csOverview: "概览",
+      csRoleLabel: "角色",
+      csEngineLabel: "引擎",
+      csYearLabel: "年份",
+      csWatchOnYoutube: "在 YouTube 观看完整视频 ↗",
+      csInProgressTitle: "完整 case study 制作中",
+      csInProgressBody: "这个项目更深入的复盘——设计决策、过程与截图——正在路上。",
+      footerText: "David Bao 使用 Astro 构建",
+    },
   };
 
+  const LANG_KEY = "site-lang";
   const langButtons = document.querySelectorAll("[data-lang]");
-  const i18nNodes = document.querySelectorAll("[data-i18n]");
 
   const setLanguage = (lang) => {
-    i18nNodes.forEach((node) => {
+    const dict = translations[lang];
+    if (!dict) return;
+
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
       const key = node.getAttribute("data-i18n");
-      if (key && translations[lang][key]) {
-        node.textContent = translations[lang][key];
-      }
+      if (key && dict[key]) node.textContent = dict[key];
     });
 
     document.querySelectorAll("[data-i18n-alt]").forEach((node) => {
       const key = node.getAttribute("data-i18n-alt");
-      if (key && translations[lang][key]) {
-        node.setAttribute("alt", translations[lang][key]);
-      }
+      if (key && dict[key]) node.setAttribute("alt", dict[key]);
+    });
+
+    document.querySelectorAll("[data-i18n-dual]").forEach((node) => {
+      const text = node.getAttribute(lang === "zh" ? "data-zh" : "data-en");
+      if (text) node.textContent = text;
     });
 
     document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
@@ -226,6 +154,12 @@
     langButtons.forEach((button) => {
       button.classList.toggle("active", button.getAttribute("data-lang") === lang);
     });
+
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch {
+      /* private mode etc. — ignore */
+    }
   };
 
   langButtons.forEach((button) => {
@@ -235,7 +169,13 @@
     });
   });
 
-  setLanguage("en");
+  let savedLang = "en";
+  try {
+    savedLang = localStorage.getItem(LANG_KEY) === "zh" ? "zh" : "en";
+  } catch {
+    /* ignore */
+  }
+  setLanguage(savedLang);
 
   // Home links use /#projects, /#about, etc. The hash stays in the URL, so refresh jumps to that section.
   // On full reload only, strip the hash and scroll to the top so refresh returns to the hero.
@@ -271,6 +211,28 @@
 
     revealItems.forEach((item) => revealObserver.observe(item));
   }
+
+  // Cover images: fall back to data-fallback-src if the primary fails
+  // (YouTube maxresdefault.jpg isn't available for every video).
+  document.querySelectorAll("img[data-fallback-src]").forEach((img) => {
+    img.addEventListener(
+      "error",
+      () => {
+        const fallback = img.getAttribute("data-fallback-src");
+        if (fallback && img.getAttribute("src") !== fallback) {
+          img.setAttribute("src", fallback);
+        }
+      },
+      { once: true }
+    );
+    // If it already failed before this script ran:
+    if (img.complete && img.naturalWidth === 0) {
+      const fallback = img.getAttribute("data-fallback-src");
+      if (fallback && img.getAttribute("src") !== fallback) {
+        img.setAttribute("src", fallback);
+      }
+    }
+  });
 
   const canHoverPreview = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const previewMediaNodes = document.querySelectorAll("[data-preview-video-id]");

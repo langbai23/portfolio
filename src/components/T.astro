@@ -1,0 +1,19 @@
+---
+/**
+ * Bilingual text node. Renders English by default; LanguageScript swaps
+ * textContent from the data attributes when the language changes.
+ *
+ *   <T t={project.summary} as="p" class="card-summary" />
+ */
+import type { Localized } from "../data/projects";
+
+interface Props {
+  t: Localized;
+  as?: string;
+  [key: string]: unknown;
+}
+
+const { t, as: Tag = "span", ...rest } = Astro.props;
+---
+
+<Tag data-i18n-dual data-en={t.en} data-zh={t.zh} {...rest}>{t.en}</Tag>

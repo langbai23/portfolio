@@ -1,0 +1,144 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/portfolio/NavBar.astro";
+import SiteFooter from "../../components/portfolio/SiteFooter.astro";
+import LanguageScript from "../../components/portfolio/LanguageScript.astro";
+import T from "../../components/T.astro";
+import { PUBLISHED_PROJECTS, type ProjectEntry } from "../../data/projects";
+
+export function getStaticPaths() {
+  return PUBLISHED_PROJECTS.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: ProjectEntry;
+}
+
+const { project } = Astro.props;
+const cs = project.caseStudy;
+const embedUrl = project.video
+  ? `https://www.youtube.com/embed/${project.video.videoId}?rel=0`
+  : null;
+---
+
+<Layout
+  title={`${project.title} | David Bao`}
+  description={project.summary.en}
+  ogImage={project.cover}
+>
+  <NavBar />
+
+  <main class="container project-detail">
+    <p class="project-detail-back">
+      <a href="/#projects" data-i18n="csBack">← Back to projects</a>
+    </p>
+
+    <header class="cs-header">
+      <T t={project.tag} class="project-tag" />
+      <h1 class="cs-title">{project.title}</h1>
+      <T t={cs.lede} as="p" class="cs-lede" />
+    </header>
+
+    <div class="cs-meta">
+      {
+        cs.role && (
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="csRoleLabel">
+              Role
+            </span>
+            <T t={cs.role} class="cs-meta-value" />
+          </div>
+        )
+      }
+      {
+        cs.engine && (
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="csEngineLabel">
+              Engine
+            </span>
+            <span class="cs-meta-value">{cs.engine}</span>
+          </div>
+        )
+      }
+      <div class="cs-meta-item">
+        <span class="cs-meta-label" data-i18n="csYearLabel">Year</span>
+        <span class="cs-meta-value">{cs.timeframe ?? project.year}</span>
+      </div>
+    </div>
+
+    {
+      embedUrl && (
+        <div class="cs-video">
+          <iframe
+            src={embedUrl}
+            title={project.video?.previewTitle ?? `${project.title} video`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        </div>
+      )
+    }
+    {
+      project.links?.youtube && (
+        <a
+          class="cs-external-link"
+          href={project.links.youtube}
+          target="_blank"
+          rel="noreferrer"
+          data-i18n="csWatchOnYoutube"
+        >
+          Watch full video on YouTube ↗
+        </a>
+      )
+    }
+
+    {
+      cs.sections.map((section) => (
+        <section class="cs-section">
+          <T t={section.heading} as="h2" />
+          {section.body.map((paragraph) => (
+            <T t={paragraph} as="p" />
+          ))}
+        </section>
+      ))
+    }
+
+    {
+      cs.inProgress && (
+        <aside class="cs-note">
+          <h2 data-i18n="csInProgressTitle">Full case study in progress</h2>
+          <p data-i18n="csInProgressBody">
+            A deeper write-up of this project—design decisions, process, and screenshots—is on its
+            way.
+          </p>
+        </aside>
+      )
+    }
+
+    {
+      cs.gallery.length > 0 && (
+        <div class="gallery-stack">
+          {cs.gallery.map((img) => (
+            <figure class="gallery-figure">
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+                width="1280"
+                height="720"
+              />
+            </figure>
+          ))}
+        </div>
+      )
+    }
+  </main>
+
+  <SiteFooter />
+  <LanguageScript />
+</Layout>

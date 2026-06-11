@@ -4,7 +4,7 @@ import NavBar from "../../components/portfolio/NavBar.astro";
 import ProjectCard from "../../components/portfolio/ProjectCard.astro";
 import SiteFooter from "../../components/portfolio/SiteFooter.astro";
 import LanguageScript from "../../components/portfolio/LanguageScript.astro";
-import { ALL_PROJECTS } from "../../data/projects";
+import { PUBLISHED_PROJECTS } from "../../data/projects";
 ---
 
 <Layout
@@ -15,12 +15,13 @@ import { ALL_PROJECTS } from "../../data/projects";
 
   <main class="container projects-all-page">
     <section class="projects-all" aria-labelledby="projects-all-heading">
+      <span class="section-eyebrow" data-i18n="projectsEyebrow">Selected Work</span>
       <h1 id="projects-all-heading" class="section-title" data-i18n="projectsAllTitle">All projects</h1>
       <p class="section-subtitle" data-i18n="projectsAllSubtitle">
-        Everything in chronological order, newest to oldest.
+        Complete list in chronological order, newest to oldest.
       </p>
       <div class="project-grid">
-        {ALL_PROJECTS.map((project) => <ProjectCard project={project} />)}
+        {PUBLISHED_PROJECTS.map((project) => <ProjectCard project={project} />)}
       </div>
     </section>
   </main>
