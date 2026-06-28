@@ -31,7 +31,6 @@
       viewAllProjects: "View all projects",
       projectsAllTitle: "All projects",
       projectsAllSubtitle: "Complete list in chronological order, newest to oldest.",
-      projectHoverPreviewHint: "Hover to preview",
       aboutEyebrow: "About",
       aboutTitle: "About Me",
       aboutP1:
@@ -92,7 +91,6 @@
       viewAllProjects: "查看全部项目",
       projectsAllTitle: "全部项目",
       projectsAllSubtitle: "按时间顺序排列，从新到旧。",
-      projectHoverPreviewHint: "悬停预览",
       aboutEyebrow: "关于",
       aboutTitle: "关于我",
       aboutP1:
@@ -212,192 +210,35 @@
     revealItems.forEach((item) => revealObserver.observe(item));
   }
 
-  // Cover images: fall back to data-fallback-src if the primary fails
-  // (YouTube maxresdefault.jpg isn't available for every video).
-  document.querySelectorAll("img[data-fallback-src]").forEach((img) => {
-    img.addEventListener(
-      "error",
+  // Click-to-play YouTube facade: nothing loads until the visitor clicks, so
+  // the page stays light on mobile and YouTube's bot check never fires on load
+  // (a real person's click loads the player in their own session).
+  document.querySelectorAll(".yt-facade[data-youtube-id]").forEach((facade) => {
+    facade.addEventListener(
+      "click",
       () => {
-        const fallback = img.getAttribute("data-fallback-src");
-        if (fallback && img.getAttribute("src") !== fallback) {
-          img.setAttribute("src", fallback);
-        }
+        const id = facade.getAttribute("data-youtube-id");
+        if (!id || facade.classList.contains("is-playing")) return;
+
+        const params = new URLSearchParams({
+          autoplay: "1",
+          rel: "0",
+          modestbranding: "1",
+          playsinline: "1",
+        });
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${id}?${params.toString()}`;
+        iframe.title = facade.getAttribute("data-youtube-title") || "Project video";
+        iframe.loading = "lazy";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+
+        facade.appendChild(iframe);
+        facade.classList.add("is-playing");
       },
       { once: true }
     );
-    // If it already failed before this script ran:
-    if (img.complete && img.naturalWidth === 0) {
-      const fallback = img.getAttribute("data-fallback-src");
-      if (fallback && img.getAttribute("src") !== fallback) {
-        img.setAttribute("src", fallback);
-      }
-    }
-  });
-
-  const canHoverPreview = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  const previewMediaNodes = document.querySelectorAll("[data-preview-video-id]");
-
-  previewMediaNodes.forEach((mediaNode) => {
-    const slot = mediaNode.querySelector("[data-preview-slot]");
-    const videoId = mediaNode.getAttribute("data-preview-video-id");
-    const videoTitle = mediaNode.getAttribute("data-preview-title") || "Project preview";
-    const previewMode = mediaNode.getAttribute("data-preview-mode") || "autoplay";
-    const previewStart = mediaNode.getAttribute("data-preview-start");
-    const previewEnd = mediaNode.getAttribute("data-preview-end");
-    const previewSegments = mediaNode.getAttribute("data-preview-segments");
-    let iframe = null;
-    let segmentTimerId = null;
-    let repeatTimerId = null;
-    let currentSegmentIndex = 0;
-
-    if (!slot || !videoId) return;
-
-    const segments = previewSegments
-      ? previewSegments
-          .split(",")
-          .map((rawSegment) => rawSegment.trim())
-          .map((segment) => {
-            const [startRaw, endRaw] = segment.split("-");
-            const start = Number(startRaw);
-            const end = Number(endRaw);
-            return Number.isFinite(start) && Number.isFinite(end) && end > start
-              ? { start, end }
-              : null;
-          })
-          .filter(Boolean)
-      : [];
-
-    const buildIframeSrc = (startValue, endValue) => {
-      const params = new URLSearchParams({
-        autoplay: "1",
-        mute: "1",
-        controls: "0",
-        modestbranding: "1",
-        rel: "0",
-        playsinline: "1"
-      });
-
-      const hasClipBounds =
-        typeof startValue === "number" &&
-        typeof endValue === "number" &&
-        Number.isFinite(startValue) &&
-        Number.isFinite(endValue);
-
-      if (typeof startValue === "number" && Number.isFinite(startValue)) {
-        params.set("start", String(Math.floor(startValue)));
-      }
-      if (typeof endValue === "number" && Number.isFinite(endValue)) {
-        params.set("end", String(Math.ceil(endValue)));
-      }
-
-      if (!hasClipBounds) {
-        params.set("loop", "1");
-        params.set("playlist", videoId);
-      }
-
-      return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
-    };
-
-    const renderIframe = (startValue, endValue) => {
-      if (iframe) {
-        iframe.remove();
-        iframe = null;
-      }
-
-      iframe = document.createElement("iframe");
-      iframe.src = buildIframeSrc(startValue, endValue);
-      iframe.title = videoTitle;
-      iframe.loading = "lazy";
-      iframe.allow = "autoplay; encrypted-media; picture-in-picture";
-      iframe.referrerPolicy = "strict-origin-when-cross-origin";
-      slot.appendChild(iframe);
-      mediaNode.classList.add("is-playing");
-    };
-
-    const clearTimers = () => {
-      if (segmentTimerId) {
-        window.clearTimeout(segmentTimerId);
-        segmentTimerId = null;
-      }
-      if (repeatTimerId) {
-        window.clearTimeout(repeatTimerId);
-        repeatTimerId = null;
-      }
-    };
-
-    const playSingleClip = () => {
-      const singleStart = previewStart ? Number(previewStart) : NaN;
-      const singleEnd = previewEnd ? Number(previewEnd) : NaN;
-
-      if (Number.isFinite(singleStart) && Number.isFinite(singleEnd)) {
-        renderIframe(singleStart, singleEnd);
-        repeatTimerId = window.setTimeout(() => {
-          repeatTimerId = null;
-          playSingleClip();
-        }, Math.max(800, (singleEnd - singleStart) * 1000));
-        return;
-      }
-
-      renderIframe(
-        Number.isFinite(singleStart) ? singleStart : undefined,
-        Number.isFinite(singleEnd) ? singleEnd : undefined
-      );
-    };
-
-    const playCurrentSegment = () => {
-      if (!segments.length) {
-        playSingleClip();
-        return;
-      }
-
-      const currentSegment = segments[currentSegmentIndex];
-      renderIframe(currentSegment.start, currentSegment.end);
-
-      const segmentDurationMs = Math.max(800, (currentSegment.end - currentSegment.start) * 1000);
-      segmentTimerId = window.setTimeout(() => {
-        segmentTimerId = null;
-        currentSegmentIndex = (currentSegmentIndex + 1) % segments.length;
-        playCurrentSegment();
-      }, segmentDurationMs);
-    };
-
-    const startPreview = () => {
-      if (iframe || segmentTimerId || repeatTimerId) return;
-      currentSegmentIndex = 0;
-      playCurrentSegment();
-    };
-
-    const stopPreview = () => {
-      clearTimers();
-      if (iframe) {
-        iframe.remove();
-        iframe = null;
-      }
-      mediaNode.classList.remove("is-playing");
-    };
-
-    if (previewMode === "hover") {
-      if (!canHoverPreview) return;
-      mediaNode.addEventListener("mouseenter", startPreview);
-      mediaNode.addEventListener("mouseleave", stopPreview);
-      mediaNode.addEventListener("focusin", startPreview);
-      mediaNode.addEventListener("focusout", stopPreview);
-      return;
-    }
-
-    const previewObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            startPreview();
-          } else {
-            stopPreview();
-          }
-        });
-      },
-      { threshold: 0.35, rootMargin: "0px 0px -10% 0px" }
-    );
-
-    previewObserver.observe(mediaNode);
   });
 </script>

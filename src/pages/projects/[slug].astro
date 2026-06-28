@@ -19,9 +19,6 @@ interface Props {
 
 const { project } = Astro.props;
 const cs = project.caseStudy;
-const embedUrl = project.video
-  ? `https://www.youtube.com/embed/${project.video.videoId}?rel=0`
-  : null;
 ---
 
 <Layout
@@ -70,16 +67,21 @@ const embedUrl = project.video
     </div>
 
     {
-      embedUrl && (
-        <div class="cs-video">
-          <iframe
-            src={embedUrl}
-            title={project.video?.previewTitle ?? `${project.title} video`}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          />
-        </div>
+      project.youtubeId && (
+        <button
+          class="cs-video yt-facade"
+          type="button"
+          data-youtube-id={project.youtubeId}
+          data-youtube-title={`${project.title} — gameplay video`}
+          aria-label={`Play ${project.title} video`}
+        >
+          <img src={project.cover} alt="" loading="lazy" decoding="async" />
+          <span class="yt-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
       )
     }
     {

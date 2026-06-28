@@ -8,37 +8,33 @@ interface Props {
 }
 
 const { project, featured = false } = Astro.props;
-const vid = project.video;
 const detailHref = `/projects/${project.id}`;
+const yt = project.youtubeId;
 ---
 
 <article class:list={["project-card", "reveal-item", { featured }]}>
-  <a
-    class:list={["project-media", "project-media-link", { "is-video": !!vid }]}
-    href={detailHref}
-    {...(vid
-      ? {
-          "data-preview-video-id": vid.videoId,
-          "data-preview-title": vid.previewTitle,
-          "data-preview-mode": vid.mode,
-          ...(vid.start ? { "data-preview-start": vid.start } : {}),
-          ...(vid.end ? { "data-preview-end": vid.end } : {}),
-          ...(vid.segments ? { "data-preview-segments": vid.segments } : {}),
-        }
-      : {})}
-  >
-    <img
-      class:list={[{ "preview-poster": !!vid }]}
-      src={project.cover}
-      {...(project.coverFallback ? { "data-fallback-src": project.coverFallback } : {})}
-      alt=""
-      loading="lazy"
-      decoding="async"
-      width="1280"
-      height="720"
-    />
-    {vid && <div class="preview-slot" data-preview-slot></div>}
-  </a>
+  {
+    yt ? (
+      <button
+        class="project-media yt-facade"
+        type="button"
+        data-youtube-id={yt}
+        data-youtube-title={`${project.title} — gameplay video`}
+        aria-label={`Play ${project.title} video`}
+      >
+        <img src={project.cover} alt="" loading="lazy" decoding="async" width="1280" height="720" />
+        <span class="yt-play-btn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </span>
+      </button>
+    ) : (
+      <a class="project-media project-media-link" href={detailHref}>
+        <img src={project.cover} alt="" loading="lazy" decoding="async" width="1280" height="720" />
+      </a>
+    )
+  }
 
   <div class="project-content">
     <div class="project-meta">

@@ -13,15 +13,6 @@
 
 export type Localized = { en: string; zh: string };
 
-export type ProjectVideo = {
-  videoId: string;
-  previewTitle: string;
-  mode: "autoplay" | "hover";
-  start?: string;
-  end?: string;
-  segments?: string;
-};
-
 export type CaseStudySection = {
   heading: Localized;
   body: Localized[]; // each item = one paragraph
@@ -37,9 +28,8 @@ export type ProjectEntry = {
   summary: Localized; // card description
   tools: string[];
   chips: Localized[];
-  cover: string;
-  coverFallback?: string; // used if `cover` fails to load
-  video?: ProjectVideo;
+  cover: string; // poster image (shown before the video loads / when there's no video)
+  youtubeId?: string; // if set, the card/detail media becomes a click-to-play YouTube player
   links?: { youtube?: string; github?: string; play?: string };
   caseStudy: {
     lede: Localized;
@@ -71,14 +61,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
       { en: "Choice", zh: "抉择" },
       { en: "3D", zh: "3D" },
     ],
-    cover: "https://i.ytimg.com/vi/rh9rtkyCN-U/sddefault.jpg",
-    coverFallback: "https://i.ytimg.com/vi/rh9rtkyCN-U/hqdefault.jpg",
-    video: {
-      videoId: "rh9rtkyCN-U",
-      previewTitle: "Traveler preview video",
-      mode: "autoplay",
-      segments: "32-39,53-56,117-125",
-    },
+    cover: "/gameplay/traveler.jpg",
+    youtubeId: "rh9rtkyCN-U",
     links: { youtube: "https://www.youtube.com/watch?v=rh9rtkyCN-U" },
     caseStudy: {
       // TODO(David): replace lede with your own positioning line, then add
@@ -112,15 +96,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
       { en: "Exploration", zh: "探索" },
       { en: "Worldbuilding", zh: "世界观" },
     ],
-    cover: "https://i.ytimg.com/vi/zuhjDCuK5eU/sddefault.jpg",
-    coverFallback: "https://i.ytimg.com/vi/zuhjDCuK5eU/hqdefault.jpg",
-    video: {
-      videoId: "zuhjDCuK5eU",
-      previewTitle: "After They're Gone preview video",
-      mode: "autoplay",
-      start: "6",
-      end: "30",
-    },
+    cover: "/gameplay/after.jpg",
+    youtubeId: "zuhjDCuK5eU",
     links: { youtube: "https://www.youtube.com/watch?v=zuhjDCuK5eU" },
     caseStudy: {
       // TODO(David): add sections + gallery screenshots.
@@ -153,15 +130,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
       { en: "Unity", zh: "Unity" },
       { en: "2D", zh: "2D" },
     ],
-    cover: "https://i.ytimg.com/vi/QkLvMYWeGDo/maxresdefault.jpg",
-    coverFallback: "https://i.ytimg.com/vi/QkLvMYWeGDo/hqdefault.jpg",
-    video: {
-      videoId: "QkLvMYWeGDo",
-      previewTitle: "Overtale preview video",
-      mode: "autoplay",
-      start: "45",
-      end: "60",
-    },
+    cover: "/gameplay/overtale.jpg",
+    youtubeId: "QkLvMYWeGDo",
     links: { youtube: "https://www.youtube.com/watch?v=QkLvMYWeGDo&t=1s" },
     caseStudy: {
       // TODO(David): add sections + gallery screenshots.
