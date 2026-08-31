@@ -122,6 +122,64 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     },
   },
   {
+    id: "fishitting",
+    title: "Fishitting",
+    year: 2026,
+    published: true,
+    status: { en: "Game Jam", zh: "Game Jam" },
+    tag: { en: "Arcade · Eco-Satire", zh: "街机 · 生态讽刺" },
+    summary: {
+      en: "A game-jam game about a fish leashed to a polluted seabed, scavenging scrap to power up its light. Fend off troublemaking fish—the game's called Fishitting for a reason—and the brighter the light grows, the bigger the crowd it draws, until their weight snaps your rope. The twist: freed at last, the fish surfaces only to die in the polluted water anyway.",
+      zh: "一款 game jam 作品：一条被绳子拴在污染海底的鱼，收集废料给自己的灯升级。用「屎」把捣乱的坏鱼轰走（游戏叫 Fishitting 不是没原因的）——灯越亮，招来的鱼越多，直到鱼群的重量撞断绳子。反转：终于挣脱，鱼浮上海面，却还是死在了被污染的水里。",
+    },
+    tools: ["Unity", "2D", "Game jam"],
+    chips: [
+      { en: "Team", zh: "团队" },
+      { en: "2D Action", zh: "2D 动作" },
+      { en: "Satire", zh: "讽刺" },
+    ],
+    cover: "/gameplay/fishitting.jpg",
+    clip: "/gameplay/fishitting.mp4",
+    caseStudy: {
+      lede: {
+        en: "Fishitting looks like a scrappy survival loop—forage, collect, upgrade, brighten—right up until it isn't. The brighter your light burns, the more fish it summons, until the crowd snaps the anchor rope holding you down. Freedom, the surface, and then the pollution that was waiting there the whole time.",
+        zh: "Fishitting 看起来只是个朴素的生存循环——觅食、收集、升级、变亮——直到它不再是。灯烧得越亮，招来的鱼越多，直到鱼群撞断了把你按在海底的锚绳。自由，海面，然后是一直等在那里的污染。",
+      },
+      team: { en: "3-person game jam team", zh: "三人 game jam 团队" },
+      engine: "Unity (2D)",
+      timeframe: "2026",
+      sections: [
+        {
+          heading: { en: "Light is the whole economy", zh: "灯，就是整个经济系统" },
+          body: [
+            {
+              en: "You play a fish tied to the seabed by an anchor line. Forage to hold off hunger, then drag scrap—glass, batteries, metal—to your broken light and upgrade it. Every upgrade widens your vision and lengthens the rope, so brightness, sight, and how far you can roam all grow together.",
+              zh: "你扮演一条被锚绳拴在海底的鱼。先觅食顶住饥饿，再把废料——玻璃、电池、金属——拖到破损的灯那里升级。每次升级都会扩大视野、放长绳子，于是亮度、视野和活动范围一起变大。",
+            },
+            {
+              en: "Other fish don't make it easy: they barge in and knock your hard-won materials loose. Your answer is the ammunition the game is named after—hold to charge (you slow to a crawl), release to fire, and the troublemaker is blinded and driven off. Clearing fish feeds the light too.",
+              zh: "别的鱼不会让你好过：它们会冲进来把你辛苦收集的材料撞飞。你的反击，就是这游戏名字的来源——按住蓄力（你会慢得像爬），松手发射，捣乱者被糊住视野、被赶走。清理掉鱼同样能喂养那盏灯。",
+            },
+          ],
+        },
+        {
+          heading: { en: "The brightest light is the trap", zh: "最亮的光，就是陷阱" },
+          body: [
+            {
+              en: "Brightness is the goal and the undoing. Push the light to its brightest and it stops being a tool—it becomes a beacon, pulling in more and more fish until the crowd's sheer weight breaks the rope that's held you down the whole game.",
+              zh: "变亮既是目标，也是败因。把灯推到最亮，它就不再是工具——而成了灯塔，招来越来越多的鱼，直到鱼群的重量撞断那根拴了你一整局的绳子。",
+            },
+            {
+              en: "And then the real point lands. The fish tears free, swims up toward the light at the surface it's been reaching for—and dies there anyway, in water too polluted to live in. The escape was never the ending; the ocean was.",
+              zh: "然后真正的立意才落下。鱼挣脱、游向它一直渴望的海面之光——却还是死在了那里，死在污染到无法生存的水中。挣脱从来不是结局；大海才是。",
+            },
+          ],
+        },
+      ],
+      gallery: [],
+    },
+  },
+  {
     id: "traveler",
     title: "Traveler",
     year: 2026,
