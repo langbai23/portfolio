@@ -200,6 +200,7 @@ export const ALL_PROJECTS: ProjectEntry[] = [
       { en: "3D", zh: "3D" },
     ],
     cover: "/gameplay/traveler.jpg",
+    clip: "/gameplay/traveler.mp4",
     youtubeId: "rh9rtkyCN-U",
     links: { youtube: "https://www.youtube.com/watch?v=rh9rtkyCN-U" },
     caseStudy: {
@@ -235,6 +236,7 @@ export const ALL_PROJECTS: ProjectEntry[] = [
       { en: "Worldbuilding", zh: "世界观" },
     ],
     cover: "/gameplay/after.jpg",
+    clip: "/gameplay/after.mp4",
     youtubeId: "zuhjDCuK5eU",
     links: { youtube: "https://www.youtube.com/watch?v=zuhjDCuK5eU" },
     caseStudy: {
@@ -269,6 +271,7 @@ export const ALL_PROJECTS: ProjectEntry[] = [
       { en: "2D", zh: "2D" },
     ],
     cover: "/gameplay/overtale.jpg",
+    clip: "/gameplay/overtale.mp4",
     youtubeId: "QkLvMYWeGDo",
     links: { youtube: "https://www.youtube.com/watch?v=QkLvMYWeGDo&t=1s" },
     caseStudy: {
