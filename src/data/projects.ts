@@ -140,11 +140,14 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     ],
     cover: "/gameplay/fishitting.jpg",
     clip: "/gameplay/fishitting.mp4",
+    youtubeId: "wcRClv32Hik",
+    links: { youtube: "https://youtu.be/wcRClv32Hik" },
     caseStudy: {
       lede: {
         en: "Fishitting looks like a scrappy survival loop—forage, collect, upgrade, brighten—right up until it isn't. The brighter your light burns, the more fish it summons, until the crowd snaps the anchor rope holding you down. Freedom, the surface, and then the pollution that was waiting there the whole time.",
         zh: "Fishitting 看起来只是个朴素的生存循环——觅食、收集、升级、变亮——直到它不再是。灯烧得越亮，招来的鱼越多，直到鱼群撞断了把你按在海底的锚绳。自由，海面，然后是一直等在那里的污染。",
       },
+      role: { en: "Design & programming", zh: "策划 + 程序" },
       team: { en: "3-person game jam team", zh: "三人 game jam 团队" },
       engine: "Unity (2D)",
       timeframe: "2026",
