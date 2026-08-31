@@ -708,6 +708,82 @@ const resolvedOgImage = ogImage
     transform: translateY(0);
   }
 
+  /* -------------------------- experience --------------------------- */
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent-line);
+    border-radius: 8px;
+    padding: 28px 30px;
+  }
+
+  .exp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .exp-role {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+  }
+
+  .exp-project {
+    font-size: 0.98rem;
+    color: var(--accent-bright);
+  }
+
+  .exp-project a {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .exp-project a:hover {
+    border-bottom-color: var(--accent-line);
+  }
+
+  .exp-org {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .exp-dates {
+    font-family: var(--serif);
+    color: var(--muted);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exp-bullets li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .exp-bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 10px;
+    height: 1px;
+    background: var(--accent);
+  }
+
   /* ---------------------------- about ------------------------------ */
   .about-box {
     background: var(--card);

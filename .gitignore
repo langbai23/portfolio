@@ -24,3 +24,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .claude/
+
+# personal resume (contains contact details) — keep out of the public repo
+resume/
