@@ -503,7 +503,8 @@ const resolvedOgImage = ogImage
     outline-offset: 3px;
   }
 
-  .project-media img {
+  .project-media img,
+  .project-media video {
     display: block;
     width: 100%;
     height: 100%;
@@ -511,7 +512,8 @@ const resolvedOgImage = ogImage
     transition: opacity 0.25s ease, transform 0.45s ease;
   }
 
-  .project-card:hover .project-media img {
+  .project-card:hover .project-media img,
+  .project-card:hover .project-media video {
     transform: scale(1.04);
   }
 
@@ -945,7 +947,8 @@ const resolvedOgImage = ogImage
     object-fit: cover;
   }
 
-  .cs-video iframe {
+  .cs-video iframe,
+  .cs-video video {
     position: absolute;
     inset: 0;
     width: 100%;

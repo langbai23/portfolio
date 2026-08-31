@@ -243,4 +243,32 @@
       { once: true }
     );
   });
+
+  // Self-hosted gameplay clips: autoplay muted/looping only while on screen,
+  // and never under reduced-motion. Far lighter than an auto-loading iframe.
+  const clips = document.querySelectorAll("video[data-autoplay-clip]");
+
+  if (clips.length) {
+    if (prefersReducedMotion) {
+      clips.forEach((clip) => clip.removeAttribute("autoplay"));
+    } else {
+      const clipObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const clip = entry.target;
+            if (entry.isIntersecting) {
+              if (clip.preload === "none") clip.preload = "auto";
+              const play = clip.play();
+              if (play && typeof play.catch === "function") play.catch(() => {});
+            } else {
+              clip.pause();
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+
+      clips.forEach((clip) => clipObserver.observe(clip));
+    }
+  }
 </script>

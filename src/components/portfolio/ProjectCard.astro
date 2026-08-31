@@ -9,12 +9,27 @@ interface Props {
 
 const { project, featured = false } = Astro.props;
 const detailHref = `/projects/${project.id}`;
+const clip = project.clip;
 const yt = project.youtubeId;
 ---
 
 <article class:list={["project-card", "reveal-item", { featured }]}>
   {
-    yt ? (
+    clip ? (
+      <a class="project-media project-media-link" href={detailHref}>
+        <video
+          class="project-clip"
+          poster={project.cover}
+          src={clip}
+          muted
+          loop
+          playsinline
+          preload="none"
+          autoplay
+          data-autoplay-clip
+        />
+      </a>
+    ) : yt ? (
       <button
         class="project-media yt-facade"
         type="button"

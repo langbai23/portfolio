@@ -29,7 +29,8 @@ export type ProjectEntry = {
   tools: string[];
   chips: Localized[];
   cover: string; // poster image (shown before the video loads / when there's no video)
-  youtubeId?: string; // if set, the card/detail media becomes a click-to-play YouTube player
+  clip?: string; // self-hosted muted looping gameplay clip (mp4); autoplays inline — takes priority over youtubeId
+  youtubeId?: string; // if set (and no clip), the card/detail media becomes a click-to-play YouTube player
   links?: { youtube?: string; github?: string; play?: string };
   caseStudy: {
     lede: Localized;
@@ -62,6 +63,7 @@ export const ALL_PROJECTS: ProjectEntry[] = [
       { en: "Systems", zh: "系统" },
     ],
     cover: "/gameplay/glimmer.jpg",
+    clip: "/gameplay/glimmer.mp4",
     youtubeId: "z9T54IoSa3k",
     links: { youtube: "https://www.youtube.com/watch?v=z9T54IoSa3k" },
     caseStudy: {
