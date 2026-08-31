@@ -77,36 +77,38 @@ const cs = project.caseStudy;
     </div>
 
     {
-      project.clip ? (
-        <div class="cs-video">
-          <video
-            poster={project.cover}
-            src={project.clip}
-            muted
-            loop
-            playsinline
-            autoplay
-            controls
-            preload="metadata"
-            data-autoplay-clip
-          />
-        </div>
+      /* Case study shows the full YouTube video (click-to-play). The short
+         self-hosted clip is the autoplaying teaser on the project card. */
+      project.youtubeId ? (
+        <button
+          class="cs-video yt-facade"
+          type="button"
+          data-youtube-id={project.youtubeId}
+          data-youtube-title={`${project.title} — gameplay video`}
+          aria-label={`Play ${project.title} video`}
+        >
+          <img src={project.cover} alt="" loading="lazy" decoding="async" />
+          <span class="yt-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
       ) : (
-        project.youtubeId && (
-          <button
-            class="cs-video yt-facade"
-            type="button"
-            data-youtube-id={project.youtubeId}
-            data-youtube-title={`${project.title} — gameplay video`}
-            aria-label={`Play ${project.title} video`}
-          >
-            <img src={project.cover} alt="" loading="lazy" decoding="async" />
-            <span class="yt-play-btn" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-          </button>
+        project.clip && (
+          <div class="cs-video">
+            <video
+              poster={project.cover}
+              src={project.clip}
+              muted
+              loop
+              playsinline
+              autoplay
+              controls
+              preload="metadata"
+              data-autoplay-clip
+            />
+          </div>
         )
       )
     }
