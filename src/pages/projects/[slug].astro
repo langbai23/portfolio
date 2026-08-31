@@ -51,6 +51,16 @@ const cs = project.caseStudy;
         )
       }
       {
+        cs.team && (
+          <div class="cs-meta-item">
+            <span class="cs-meta-label" data-i18n="csTeamLabel">
+              Team
+            </span>
+            <T t={cs.team} class="cs-meta-value" />
+          </div>
+        )
+      }
+      {
         cs.engine && (
           <div class="cs-meta-item">
             <span class="cs-meta-label" data-i18n="csEngineLabel">

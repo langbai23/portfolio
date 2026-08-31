@@ -45,6 +45,81 @@ export type ProjectEntry = {
 
 export const ALL_PROJECTS: ProjectEntry[] = [
   {
+    id: "glimmer",
+    title: "Glimmer",
+    year: 2026,
+    published: true,
+    status: { en: "Unity 2D", zh: "Unity 2D" },
+    tag: { en: "Narrative · Puzzle", zh: "叙事 · 解谜" },
+    summary: {
+      en: "A 2D narrative puzzle about school bullying, where a girl's vision brightens or dims with her mood. Notes, mementos, and blue-ghost friends restore her spirit—turning an emotion-driven brightness system into the core mechanic, and the story itself.",
+      zh: "一款关于校园霸凌的 2D 叙事解谜游戏：女孩的视野随心情明暗变化。字条、纪念物与蓝色幽灵（朋友）帮她找回勇气——把情绪驱动的「亮度系统」变成核心玩法，也变成故事本身。",
+    },
+    tools: ["Unity", "C#", "2D", "Pixel art", "Dialogue system"],
+    chips: [
+      { en: "Team of 2", zh: "双人团队" },
+      { en: "Narrative", zh: "叙事" },
+      { en: "Systems", zh: "系统" },
+    ],
+    cover: "/gameplay/glimmer.jpg",
+    youtubeId: "z9T54IoSa3k",
+    links: { youtube: "https://www.youtube.com/watch?v=z9T54IoSa3k" },
+    caseStudy: {
+      lede: {
+        en: "“At that moment, my world was filled with many glimmers.” Glimmer makes emotional recovery playable: the more you're hurt, the darker and narrower your vision—until friends, notes, and small kindnesses light the world back up, one object at a time.",
+        zh: "「那一刻，我的世界充满了点点微光。」Glimmer 把情绪的自愈变成可玩的系统：受伤越深，视野越暗越窄——直到朋友、字条与微小的善意，一件件把世界重新照亮。",
+      },
+      role: {
+        en: "Co-designer & developer (2-person team) — game design doc & narrative, level building (scenes 1–4), player animation, UI, and art & sound integration.",
+        zh: "共同设计与开发（双人团队）——设计文档与叙事、关卡搭建（场景 1–4）、角色动画、UI，以及美术与音效整合。",
+      },
+      team: {
+        en: "2-person team with Yan Yilang (Travis)",
+        zh: "与 Yan Yilang（Travis）组成的双人团队",
+      },
+      engine: "Unity (2D)",
+      timeframe: "2026",
+      sections: [
+        {
+          heading: { en: "An emotion system you can see", zh: "看得见的情绪系统" },
+          body: [
+            {
+              en: "The mood bar is the game. A high mood floods the scene with light and reveals more interactable objects—blue-outlined things you can touch, blue ghosts (friends and teachers) you can talk to. A low mood dims the world to near-black, leaving only a few objects visible.",
+              zh: "情绪条就是这款游戏。心情高时，场景被光填满，更多可交互物件浮现——带蓝色描边、可以触碰，蓝色幽灵（朋友与老师）也能对话；心情低时，世界暗到近乎全黑，只剩寥寥几件物品可见。",
+            },
+            {
+              en: "It's a deliberate risk/reward inversion: a lower mood grants more speed and attack but strips away vision and scope, while the goal is always to climb back toward the light. Red ghosts (bullies) push the mood down; blue ghosts pull it up. Each time you reach a new mood level, that gain becomes permanent.",
+              zh: "这是一次刻意的风险/回报反转：心情越低，移动与攻击越强，却也失去视野与范围；而目标始终是重新爬向光明。红色幽灵（霸凌者）压低心情，蓝色幽灵拉高它；每升到新一档心情，这份提升就永久保留。",
+            },
+          ],
+        },
+        {
+          heading: { en: "Telling the story through space", zh: "用空间讲故事" },
+          body: [
+            {
+              en: "Glimmer opens on a threatening letter and a classroom swarmed by red ghosts—brightness crashing to zero as the screen distorts and fades to black. From there the player walks a long, dark hallway of bullies before finding the one unlocked classroom, a blue ghost, and a notebook that raises the light by a whole level.",
+              zh: "Glimmer 以一封威胁信和被红色幽灵包围的教室开场——亮度骤降为零，画面扭曲、渐黑。之后玩家要走过一条又长又暗、满是霸凌者的走廊，才找到唯一没锁的教室、一只蓝色幽灵，以及一本让光提升整整一档的笔记本。",
+            },
+            {
+              en: "Progress is narrative and spatial rather than menu-driven: a birthday-password locker, mementos that surface as memory fragments when the mood reaches Level 3, and a final door that only opens once enough blue ghosts—glimmers—stand behind you.",
+              zh: "推进靠叙事与空间，而非菜单：用生日当密码的储物柜、心情升到第 3 档时浮现的记忆碎片，以及一扇只有当足够多蓝色幽灵——微光——站到你身后才会打开的门。",
+            },
+          ],
+        },
+        {
+          heading: { en: "My role", zh: "我负责的部分" },
+          body: [
+            {
+              en: "Glimmer was a two-person project. I wrote the game design doc and CRC cards, constructed the story, and built scenes 1–4 with their lighting; I handled player movement and animation, the emotion bar, UI, and sourced or created the art and sound. My teammate Travis focused on the systems programming—ghost tracking, the brightness system, cutscenes, and the dialogue function.",
+              zh: "Glimmer 是双人项目。我负责设计文档与 CRC 卡、构建故事，并搭建场景 1–4 及其灯光；同时处理角色移动与动画、情绪条、UI，以及美术与音效的寻找/制作。队友 Travis 主要负责系统编程——幽灵追踪、亮度系统、过场动画与对话功能。",
+            },
+          ],
+        },
+      ],
+      gallery: [],
+    },
+  },
+  {
     id: "traveler",
     title: "Traveler",
     year: 2026,
