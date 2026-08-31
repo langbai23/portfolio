@@ -9,19 +9,24 @@ import type { Localized } from "../../data/projects";
 type Experience = {
   role: Localized;
   project: string;
-  projectHref?: string;
   org: Localized;
   dates: string;
+  cover?: string;
+  links?: { steam?: string; linkedin?: string };
   bullets: Localized[];
 };
 
 const EXPERIENCE: Experience[] = [
   {
     role: { en: "Usability Lead", zh: "可用性负责人 (Usability Lead)" },
-    project: "Sisyphus's Worst Day Again",
-    projectHref: "https://www.linkedin.com/company/sisyphus-s-worst-day-again/",
+    project: "Sisyphus's Worst Day (again)",
     org: { en: "USC Advanced Games Project (AGP)", zh: "USC 高级游戏项目（AGP）" },
     dates: "2025–2026",
+    cover: "/experience/sisyphus.jpg",
+    links: {
+      steam: "https://store.steampowered.com/app/4700250/Sisyphuss_Worst_Day_again/",
+      linkedin: "https://www.linkedin.com/company/sisyphus-s-worst-day-again/",
+    },
     bullets: [
       {
         en: "Led usability across a year-long, 50+-person student game production—running 50+ playtests and coordinating regular studio-wide “Everybody Tests” with design and engineering leads.",
@@ -50,27 +55,49 @@ const EXPERIENCE: Experience[] = [
   {
     EXPERIENCE.map((exp) => (
       <article class="exp-card reveal-item">
-        <div class="exp-head">
-          <div class="exp-headline">
-            <T t={exp.role} as="h3" class="exp-role" />
-            <div class="exp-project">
-              {exp.projectHref ? (
-                <a href={exp.projectHref} target="_blank" rel="noreferrer">
-                  {exp.project}
+        {exp.cover && (
+          <a
+            class="exp-cover"
+            href={exp.links?.steam ?? exp.links?.linkedin ?? "#"}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${exp.project} — Steam page`}
+          >
+            <img src={exp.cover} alt={`${exp.project} cover`} loading="lazy" decoding="async" width="460" height="215" />
+          </a>
+        )}
+
+        <div class="exp-body">
+          <div class="exp-head">
+            <div class="exp-headline">
+              <T t={exp.role} as="h3" class="exp-role" />
+              <div class="exp-project">{exp.project}</div>
+              <T t={exp.org} class="exp-org" />
+            </div>
+            <div class="exp-dates">{exp.dates}</div>
+          </div>
+
+          <ul class="exp-bullets">
+            {exp.bullets.map((b) => (
+              <T t={b} as="li" />
+            ))}
+          </ul>
+
+          {exp.links && (
+            <div class="exp-links">
+              {exp.links.steam && (
+                <a class="exp-link" href={exp.links.steam} target="_blank" rel="noreferrer">
+                  Steam <span aria-hidden="true">↗</span>
                 </a>
-              ) : (
-                exp.project
+              )}
+              {exp.links.linkedin && (
+                <a class="exp-link" href={exp.links.linkedin} target="_blank" rel="noreferrer">
+                  LinkedIn <span aria-hidden="true">↗</span>
+                </a>
               )}
             </div>
-            <T t={exp.org} class="exp-org" />
-          </div>
-          <div class="exp-dates">{exp.dates}</div>
+          )}
         </div>
-        <ul class="exp-bullets">
-          {exp.bullets.map((b) => (
-            <T t={b} as="li" />
-          ))}
-        </ul>
       </article>
     ))
   }
