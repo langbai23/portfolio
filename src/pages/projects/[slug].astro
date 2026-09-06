@@ -113,16 +113,31 @@ const cs = project.caseStudy;
       )
     }
     {
-      project.links?.youtube && (
-        <a
-          class="cs-external-link"
-          href={project.links.youtube}
-          target="_blank"
-          rel="noreferrer"
-          data-i18n="csWatchOnYoutube"
-        >
-          Watch full video on YouTube ↗
-        </a>
+      (project.links?.youtube || project.links?.itch) && (
+        <div class="cs-links">
+          {project.links.itch && (
+            <a
+              class="cs-external-link"
+              href={project.links.itch}
+              target="_blank"
+              rel="noreferrer"
+              data-i18n="csPlayOnItch"
+            >
+              Play on itch.io ↗
+            </a>
+          )}
+          {project.links.youtube && (
+            <a
+              class="cs-external-link"
+              href={project.links.youtube}
+              target="_blank"
+              rel="noreferrer"
+              data-i18n="csWatchOnYoutube"
+            >
+              Watch full video on YouTube ↗
+            </a>
+          )}
+        </div>
       )
     }
 

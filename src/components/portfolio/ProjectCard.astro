@@ -69,7 +69,16 @@ const yt = project.youtubeId;
       <div class="meta-chips">
         {project.chips.map((chip) => <T t={chip} class="meta-chip" />)}
       </div>
-      <a class="card-cta" href={detailHref} data-i18n="caseStudyCta">Read case study</a>
+      <div class="card-links">
+        {
+          project.links?.itch && (
+            <a class="card-ext" href={project.links.itch} target="_blank" rel="noreferrer">
+              itch.io <span aria-hidden="true">↗</span>
+            </a>
+          )
+        }
+        <a class="card-cta" href={detailHref} data-i18n="caseStudyCta">Read case study</a>
+      </div>
     </div>
   </div>
 </article>
