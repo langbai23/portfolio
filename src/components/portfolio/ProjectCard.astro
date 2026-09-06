@@ -1,19 +1,20 @@
 ---
 import type { ProjectEntry } from "../../data/projects";
 import T from "../T.astro";
+import Icon from "../Icon.astro";
 
 interface Props {
   project: ProjectEntry;
-  featured?: boolean;
+  index?: number; // drives the reveal stagger (--i)
 }
 
-const { project, featured = false } = Astro.props;
+const { project, index = 0 } = Astro.props;
 const detailHref = `/projects/${project.id}`;
 const clip = project.clip;
 const yt = project.youtubeId;
 ---
 
-<article class:list={["project-card", "reveal-item", { featured }]}>
+<article class="project-card reveal-item" style={`--i: ${index}`}>
   {
     clip ? (
       <a class="project-media project-media-link" href={detailHref}>
@@ -34,14 +35,12 @@ const yt = project.youtubeId;
         class="project-media yt-facade"
         type="button"
         data-youtube-id={yt}
-        data-youtube-title={`${project.title} — gameplay video`}
+        data-youtube-title={`${project.title}, gameplay video`}
         aria-label={`Play ${project.title} video`}
       >
         <img src={project.cover} alt="" loading="lazy" decoding="async" width="1280" height="720" />
-        <span class="yt-play-btn" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
-            <path d="M8 5v14l11-7z" />
-          </svg>
+        <span class="yt-play-btn">
+          <Icon name="play" size={26} />
         </span>
       </button>
     ) : (
@@ -53,13 +52,9 @@ const yt = project.youtubeId;
 
   <div class="project-content">
     <div class="project-meta">
-      <span class="project-meta-left">
-        {featured && <span class="featured-label" data-i18n="featuredLabel">Latest</span>}
-        <T t={project.status} class="status-pill" />
-      </span>
+      <T t={project.tag} class="project-tag" />
       <span class="project-year">{project.year}</span>
     </div>
-    <T t={project.tag} class="project-tag" />
     <h3><a href={detailHref}>{project.title}</a></h3>
     <T t={project.summary} as="p" class="project-summary" />
     <div class="project-card-footer">
@@ -70,11 +65,14 @@ const yt = project.youtubeId;
         {
           project.links?.itch && (
             <a class="card-ext" href={project.links.itch} target="_blank" rel="noreferrer">
-              itch.io <span aria-hidden="true">↗</span>
+              itch.io <Icon name="arrow-up-right" size={13} />
             </a>
           )
         }
-        <a class="card-cta" href={detailHref} data-i18n="caseStudyCta">Read case study</a>
+        <a class="card-cta" href={detailHref}>
+          <span data-i18n="caseStudyCta">Read case study</span>
+          <Icon name="arrow-right" size={14} />
+        </a>
       </div>
     </div>
   </div>

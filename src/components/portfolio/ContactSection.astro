@@ -1,23 +1,25 @@
 ---
 import { SITE } from "../../data/site";
+import Icon from "../Icon.astro";
 ---
 
 <section id="contact">
   <div class="contact-box">
-    <span class="section-eyebrow" data-i18n="contactEyebrow">Contact</span>
-    <h2 class="section-title" data-i18n="contactTitle">Let's Connect</h2>
-    <p class="section-subtitle" style="margin: 0 auto 32px;" data-i18n="contactSubtitle">
-      Open to game design and development internships. Reach me by email, or connect on LinkedIn.
+    <h2 class="section-title" data-i18n="contactTitle">Let's connect</h2>
+    <p class="section-subtitle" data-i18n="contactSubtitle">
+      Open to game design and development internships. Email is fastest; LinkedIn works too.
     </p>
     <div class="contact-actions">
       <a class="button primary" href={`mailto:${SITE.email}`}>{SITE.email}</a>
       <a class="button" href={SITE.linkedin} target="_blank" rel="noreferrer">
         <span data-i18n="contactLinkedInLabel">LinkedIn</span>
+        <Icon name="arrow-up-right" size={14} />
       </a>
       {
         SITE.github && (
           <a class="button" href={SITE.github} target="_blank" rel="noreferrer">
             <span data-i18n="contactGithubLabel">GitHub</span>
+            <Icon name="arrow-up-right" size={14} />
           </a>
         )
       }
@@ -25,6 +27,7 @@ import { SITE } from "../../data/site";
         SITE.resumeUrl && (
           <a class="button" href={SITE.resumeUrl} target="_blank" rel="noreferrer">
             <span data-i18n="contactResumeLabel">Resume (PDF)</span>
+            <Icon name="arrow-up-right" size={14} />
           </a>
         )
       }

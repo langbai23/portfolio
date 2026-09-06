@@ -1,43 +1,51 @@
 ---
 import { SITE } from "../../data/site";
+import { FEATURED_PROJECT } from "../../data/projects";
+import Icon from "../Icon.astro";
+
+const featured = FEATURED_PROJECT;
 ---
 
-<section class="hero">
-  <div class="hero-grid">
-    <div>
-      <span class="eyebrow" data-i18n="heroEyebrow">Game Designer &amp; Developer · USC</span>
-      <h1 class="hero-name">{SITE.name}</h1>
-      <p class="hero-tagline" data-i18n="heroTagline">Stories told through systems.</p>
-      <p class="hero-intro" data-i18n="heroIntro">
-        USC sophomore making games where narrative craft and system design pull in the same
-        direction. Unity, tabletop, and everything between.
-      </p>
-      <ul class="hero-skill-pills" aria-label="Tools & technologies">
-        <li class="pill-tag">Unity</li>
-        <li class="pill-tag">Unreal</li>
-        <li class="pill-tag">C++</li>
-        <li class="pill-tag">Java</li>
-        <li class="pill-tag">Figma</li>
-      </ul>
-      <div class="button-row">
-        <a class="button primary" href="/#projects" data-i18n="heroPrimaryBtn">View Projects</a>
-        <a class="button" href="/#contact" data-i18n="heroSecondaryBtn">Contact Me</a>
-      </div>
-    </div>
+<!-- The hero asset is the latest project's clip; its poster is the LCP image. -->
+<link rel="preload" as="image" href={featured.cover} />
 
-    <div class="hero-card">
-      <h3 data-i18n="heroCardTitle">Currently</h3>
-      <ul class="hero-card-items">
-        <li data-i18n="heroCardItem1">Prototyping narrative systems in Unity 3D</li>
-        <li data-i18n="heroCardItem2">Studying Game Design at USC · second year</li>
-        <li data-i18n="heroCardItem3">Exploring where mechanics and story converge</li>
-      </ul>
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow" data-i18n="heroEyebrow">Game designer &amp; developer, USC</p>
+    <h1 class="hero-name">{SITE.name}</h1>
+    <p class="hero-intro" data-i18n="heroIntro">
+      Stories told through systems. USC game design sophomore, Usability Lead on a Steam-shipped
+      title, building narrative games in Unity.
+    </p>
+    <div class="button-row">
+      <a class="button primary" href="/#projects" data-i18n="heroPrimaryBtn">View projects</a>
+      <a class="button" href="/#contact" data-i18n="heroSecondaryBtn">Get in touch</a>
     </div>
   </div>
 
-  <a class="hero-scroll-cue" href="/#projects" aria-label="Scroll to projects">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M6 9l6 6 6-6"/>
-    </svg>
+  <a class="hero-visual" href={`/projects/${featured.id}`} aria-label={`${featured.title} case study`}>
+    <span class="hero-frame">
+      {
+        featured.clip ? (
+          <video
+            poster={featured.cover}
+            src={featured.clip}
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            autoplay
+            data-autoplay-clip
+          />
+        ) : (
+          <img src={featured.cover} alt="" width="1280" height="720" decoding="async" />
+        )
+      }
+    </span>
+    <span class="hero-visual-caption">
+      <span data-i18n="featuredLabel">Latest</span>
+      <strong>{featured.title}</strong>
+      <Icon name="arrow-right" size={15} />
+    </span>
   </a>
 </section>

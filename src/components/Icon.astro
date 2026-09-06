@@ -1,0 +1,28 @@
+---
+/**
+ * Inline Phosphor icon (one family, regular weight + play-fill). SVGs come
+ * straight from @phosphor-icons/core; nothing here is hand-drawn.
+ */
+import play from "@phosphor-icons/core/assets/fill/play-fill.svg?raw";
+import sun from "@phosphor-icons/core/assets/regular/sun.svg?raw";
+import moon from "@phosphor-icons/core/assets/regular/moon.svg?raw";
+import arrowRight from "@phosphor-icons/core/assets/regular/arrow-right.svg?raw";
+import arrowUpRight from "@phosphor-icons/core/assets/regular/arrow-up-right.svg?raw";
+
+const ICONS = { play, sun, moon, "arrow-right": arrowRight, "arrow-up-right": arrowUpRight } as const;
+
+interface Props {
+  name: keyof typeof ICONS;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 16, class: cls } = Astro.props;
+const classes = ["icon", cls].filter(Boolean).join(" ");
+const svg = ICONS[name].replace(
+  "<svg ",
+  `<svg width="${size}" height="${size}" class="${classes}" aria-hidden="true" focusable="false" `
+);
+---
+
+<Fragment set:html={svg} />

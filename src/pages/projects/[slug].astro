@@ -4,6 +4,7 @@ import NavBar from "../../components/portfolio/NavBar.astro";
 import SiteFooter from "../../components/portfolio/SiteFooter.astro";
 import LanguageScript from "../../components/portfolio/LanguageScript.astro";
 import T from "../../components/T.astro";
+import Icon from "../../components/Icon.astro";
 import { PUBLISHED_PROJECTS, type ProjectEntry } from "../../data/projects";
 
 export function getStaticPaths() {
@@ -30,7 +31,7 @@ const cs = project.caseStudy;
 
   <main class="container project-detail">
     <p class="project-detail-back">
-      <a href="/#projects" data-i18n="csBack">← Back to projects</a>
+      <a href="/#projects" data-i18n="csBack">Back to projects</a>
     </p>
 
     <header class="cs-header">
@@ -84,14 +85,12 @@ const cs = project.caseStudy;
           class="cs-video yt-facade"
           type="button"
           data-youtube-id={project.youtubeId}
-          data-youtube-title={`${project.title} — gameplay video`}
+          data-youtube-title={`${project.title}, gameplay video`}
           aria-label={`Play ${project.title} video`}
         >
           <img src={project.cover} alt="" loading="lazy" decoding="async" />
-          <span class="yt-play-btn" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
+          <span class="yt-play-btn">
+            <Icon name="play" size={32} />
           </span>
         </button>
       ) : (
@@ -157,7 +156,7 @@ const cs = project.caseStudy;
         <aside class="cs-note">
           <h2 data-i18n="csInProgressTitle">Full case study in progress</h2>
           <p data-i18n="csInProgressBody">
-            A deeper write-up of this project—design decisions, process, and screenshots—is on its
+            A deeper write-up of this project (design decisions, process, and screenshots) is on its
             way.
           </p>
         </aside>
