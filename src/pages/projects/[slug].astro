@@ -130,9 +130,11 @@ const cs = project.caseStudy;
       cs.sections.map((section) => (
         <section class="cs-section">
           <T t={section.heading} as="h2" />
-          {section.body.map((paragraph) => (
-            <T t={paragraph} as="p" />
-          ))}
+          <div class="cs-section-body">
+            {section.body.map((paragraph) => (
+              <T t={paragraph} as="p" />
+            ))}
+          </div>
         </section>
       ))
     }

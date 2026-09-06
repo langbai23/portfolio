@@ -21,7 +21,7 @@ import { PUBLISHED_PROJECTS } from "../../data/projects";
         Complete list in chronological order, newest to oldest.
       </p>
       <div class="project-grid">
-        {PUBLISHED_PROJECTS.map((project) => <ProjectCard project={project} />)}
+        {PUBLISHED_PROJECTS.map((project, i) => <ProjectCard project={project} index={i + 1} />)}
       </div>
     </section>
   </main>

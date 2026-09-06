@@ -2,19 +2,21 @@
 import ProjectCard from "./ProjectCard.astro";
 import { HOME_PROJECTS } from "../../data/projects";
 
-const [featured, ...rest] = HOME_PROJECTS;
+const total = String(HOME_PROJECTS.length).padStart(2, "0");
 ---
 
 <section id="projects">
-  <span class="section-eyebrow" data-i18n="projectsEyebrow">Selected Work</span>
+  <div class="section-head">
+    <span class="section-eyebrow" data-i18n="projectsEyebrow">Selected Work</span>
+    <span class="section-count">01 — {total}</span>
+  </div>
   <h2 class="section-title" data-i18n="projectsTitle">Projects</h2>
   <p class="section-subtitle" data-i18n="projectsSubtitle">
     Latest work first. Each project opens a case study with my role, process, and footage.
   </p>
 
   <div class="project-grid">
-    {featured && <ProjectCard project={featured} featured />}
-    {rest.map((project) => <ProjectCard project={project} />)}
+    {HOME_PROJECTS.map((project, i) => <ProjectCard project={project} index={i + 1} featured={i === 0} />)}
   </div>
 
   <div class="projects-view-all">
