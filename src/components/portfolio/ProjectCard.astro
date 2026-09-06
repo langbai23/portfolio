@@ -5,11 +5,9 @@ import T from "../T.astro";
 interface Props {
   project: ProjectEntry;
   featured?: boolean;
-  index?: number; // running number shown in the meta row (01, 02, …)
 }
 
-const { project, featured = false, index } = Astro.props;
-const indexLabel = index ? String(index).padStart(2, "0") : undefined;
+const { project, featured = false } = Astro.props;
 const detailHref = `/projects/${project.id}`;
 const clip = project.clip;
 const yt = project.youtubeId;
@@ -56,7 +54,6 @@ const yt = project.youtubeId;
   <div class="project-content">
     <div class="project-meta">
       <span class="project-meta-left">
-        {indexLabel && <span class="project-index">{indexLabel}</span>}
         {featured && <span class="featured-label" data-i18n="featuredLabel">Latest</span>}
         <T t={project.status} class="status-pill" />
       </span>

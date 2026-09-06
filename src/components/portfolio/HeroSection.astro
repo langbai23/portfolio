@@ -3,20 +3,15 @@ import { SITE } from "../../data/site";
 ---
 
 <section class="hero">
-  <span class="eyebrow">
-    <span class="eyebrow-name">{SITE.name}</span>
-    <span data-i18n="heroEyebrow">Game Designer &amp; Developer · USC</span>
-  </span>
-
-  <h1 class="hero-title" data-i18n="heroTagline">Stories told through systems.</h1>
-
   <div class="hero-grid">
-    <p class="hero-intro" data-i18n="heroIntro">
-      USC sophomore making games where narrative craft and system design pull in the same
-      direction. Unity, tabletop, and everything between.
-    </p>
-
-    <div class="hero-side">
+    <div>
+      <span class="eyebrow" data-i18n="heroEyebrow">Game Designer &amp; Developer · USC</span>
+      <h1 class="hero-name">{SITE.name}</h1>
+      <p class="hero-tagline" data-i18n="heroTagline">Stories told through systems.</p>
+      <p class="hero-intro" data-i18n="heroIntro">
+        USC sophomore making games where narrative craft and system design pull in the same
+        direction. Unity, tabletop, and everything between.
+      </p>
       <ul class="hero-skill-pills" aria-label="Tools & technologies">
         <li class="pill-tag">Unity</li>
         <li class="pill-tag">Unreal</li>
@@ -29,14 +24,20 @@ import { SITE } from "../../data/site";
         <a class="button" href="/#contact" data-i18n="heroSecondaryBtn">Contact Me</a>
       </div>
     </div>
+
+    <div class="hero-card">
+      <h3 data-i18n="heroCardTitle">Currently</h3>
+      <ul class="hero-card-items">
+        <li data-i18n="heroCardItem1">Prototyping narrative systems in Unity 3D</li>
+        <li data-i18n="heroCardItem2">Studying Game Design at USC · second year</li>
+        <li data-i18n="heroCardItem3">Exploring where mechanics and story converge</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="hero-strip">
-    <span class="hero-strip-label" data-i18n="heroCardTitle">Currently</span>
-    <ul class="hero-card-items">
-      <li data-i18n="heroCardItem1">Prototyping narrative systems in Unity 3D</li>
-      <li data-i18n="heroCardItem2">Studying Game Design at USC · second year</li>
-      <li data-i18n="heroCardItem3">Exploring where mechanics and story converge</li>
-    </ul>
-  </div>
+  <a class="hero-scroll-cue" href="/#projects" aria-label="Scroll to projects">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </a>
 </section>
