@@ -30,6 +30,19 @@ const resolvedOgImage = ogImage
     <meta name="twitter:description" content={description} />
     {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
     <meta name="theme-color" content="#f5f1e8" />
+    <script is:inline>
+      // Apply the saved theme before first paint so there is no flash.
+      // Saved choice > system preference > light.
+      (function () {
+        try {
+          var t = localStorage.getItem("site-theme");
+          if (t !== "dark" && t !== "light") {
+            t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
@@ -52,7 +65,10 @@ const resolvedOgImage = ogImage
    * Structure comes from hairline rules and whitespace, not boxes.     *
    * Serif display (Playfair) · sans body (Inter) · mono meta (JB Mono) *
    * ---------------------------------------------------------------- */
+  /* Tokens are semantic: --paper is the ground, --ink the foreground —
+     in dark mode "paper" is near-black and "ink" is cream. */
   :root {
+    color-scheme: light;
     --paper: #f5f1e8;
     --paper-2: #ebe6da;
     --ink: #17161a;
@@ -60,12 +76,35 @@ const resolvedOgImage = ogImage
     --muted: #726f69;
     --rule: rgba(23, 22, 26, 0.14);
     --rule-strong: rgba(23, 22, 26, 0.4);
+    --line: #17161a; /* heavy rules under section heads */
+    --frame: #17161a; /* borders around media & photos */
     --accent: #b8322a;
     --accent-ink: #8f241e;
     --accent-soft: rgba(184, 50, 42, 0.09);
+    --on-accent: #f5f1e8;
+    --nav-bg: rgba(245, 241, 232, 0.86);
     --serif: "Playfair Display", Georgia, "Songti SC", "Noto Serif SC", "SimSun", serif;
     --sans: "Inter", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
     --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* Dark mode: the original cinematic palette — deep ink, cream, warm gold. */
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0b0d12;
+    --paper-2: #141822;
+    --ink: #ece8df;
+    --ink-2: #bdb8ae;
+    --muted: #8c919c;
+    --rule: rgba(236, 232, 223, 0.12);
+    --rule-strong: rgba(236, 232, 223, 0.34);
+    --line: rgba(236, 232, 223, 0.55);
+    --frame: rgba(236, 232, 223, 0.22);
+    --accent: #d2a25c;
+    --accent-ink: #e6bd7a;
+    --accent-soft: rgba(210, 162, 92, 0.14);
+    --on-accent: #14110a;
+    --nav-bg: rgba(11, 13, 18, 0.82);
   }
 
   * {
@@ -86,6 +125,25 @@ const resolvedOgImage = ogImage
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Dark only: faint warm glow up top + film grain, from the original theme. */
+  html[data-theme="dark"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 45% at 50% -5%, rgba(210, 162, 92, 0.08), transparent 70%);
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  html[data-theme="dark"] body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    z-index: -1;
+    pointer-events: none;
   }
 
   a {
@@ -159,7 +217,7 @@ const resolvedOgImage = ogImage
   nav {
     position: sticky;
     top: 0;
-    background: rgba(245, 241, 232, 0.86);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--rule);
@@ -242,6 +300,42 @@ const resolvedOgImage = ogImage
 
   .lang-btn:hover {
     color: var(--accent);
+  }
+
+  .theme-toggle {
+    appearance: none;
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .theme-toggle svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .theme-toggle .icon-sun {
+    display: none;
+  }
+
+  html[data-theme="dark"] .theme-toggle .icon-sun {
+    display: block;
+  }
+
+  html[data-theme="dark"] .theme-toggle .icon-moon {
+    display: none;
   }
 
   /* ------------------------------ hero ----------------------------- */
@@ -363,7 +457,18 @@ const resolvedOgImage = ogImage
   .button.primary:hover {
     background: var(--accent);
     border-color: var(--accent);
-    color: var(--paper);
+    color: var(--on-accent);
+  }
+
+  html[data-theme="dark"] .button.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  html[data-theme="dark"] .button.primary:hover {
+    background: var(--accent-ink);
+    border-color: var(--accent-ink);
   }
 
   /* "Currently" strip — a typographic contents bar under the hero. */
@@ -371,7 +476,7 @@ const resolvedOgImage = ogImage
     display: grid;
     grid-template-columns: 160px minmax(0, 1fr);
     gap: 32px;
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--rule);
     padding: 22px 0;
   }
@@ -418,7 +523,7 @@ const resolvedOgImage = ogImage
     align-items: baseline;
     gap: 16px;
     width: 100%;
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--line);
     padding-top: 14px;
     margin-bottom: 26px;
     color: var(--accent);
@@ -464,7 +569,7 @@ const resolvedOgImage = ogImage
     overflow: hidden;
     aspect-ratio: 16 / 9;
     background: var(--paper-2);
-    border: 1px solid var(--ink);
+    border: 1px solid var(--frame);
     transition: border-color 0.2s ease;
   }
 
@@ -527,6 +632,7 @@ const resolvedOgImage = ogImage
   .yt-facade:focus-visible .yt-play-btn {
     transform: translate(-50%, -50%) scale(1.06);
     background: var(--accent);
+    color: var(--on-accent);
   }
 
   .yt-facade.is-playing .yt-play-btn,
@@ -668,7 +774,7 @@ const resolvedOgImage = ogImage
 
   .project-card.featured .project-content {
     padding-top: 18px;
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--line);
   }
 
   .project-card.featured h3 {
@@ -710,7 +816,7 @@ const resolvedOgImage = ogImage
   .exp-cover {
     display: block;
     overflow: hidden;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--frame);
     aspect-ratio: 460 / 215;
     background: var(--paper-2);
     transition: border-color 0.2s ease;
@@ -847,7 +953,7 @@ const resolvedOgImage = ogImage
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--frame);
     display: block;
   }
 
@@ -872,7 +978,7 @@ const resolvedOgImage = ogImage
     margin-top: 36px;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--rule);
   }
 
@@ -913,7 +1019,7 @@ const resolvedOgImage = ogImage
   /* --------------------------- contact ----------------------------- */
   .contact-box {
     text-align: center;
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--line);
     padding: 80px 24px 48px;
   }
 
@@ -971,7 +1077,7 @@ const resolvedOgImage = ogImage
   }
 
   .cs-header {
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--line);
     padding-top: 22px;
     margin-bottom: 40px;
   }
@@ -1007,7 +1113,7 @@ const resolvedOgImage = ogImage
   .cs-meta {
     display: flex;
     flex-wrap: wrap;
-    border-top: 1px solid var(--ink);
+    border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--rule);
     margin-bottom: 40px;
   }
@@ -1039,7 +1145,7 @@ const resolvedOgImage = ogImage
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--frame);
     background: var(--paper-2);
     margin-bottom: 16px;
   }
@@ -1109,7 +1215,7 @@ const resolvedOgImage = ogImage
 
   .cs-note {
     max-width: 1000px;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--frame);
     border-left: 4px solid var(--accent);
     padding: 22px 26px;
     margin: 40px 0;
@@ -1135,7 +1241,7 @@ const resolvedOgImage = ogImage
   .gallery-figure {
     margin: 0;
     overflow: hidden;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--frame);
     background: var(--paper-2);
   }
 
