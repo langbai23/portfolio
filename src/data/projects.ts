@@ -195,7 +195,7 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     },
     tools: ["Unity", "3D", "Story-driven"],
     chips: [
-      { en: "Solo Dev", zh: "独立开发" },
+      { en: "Team of 2", zh: "双人团队" },
       { en: "Choice", zh: "抉择" },
       { en: "3D", zh: "3D" },
     ],
@@ -210,7 +210,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
         en: "A criminal walks the line between heaven and hell. Traveler explores how moral choice can be carried by exploration and story beats rather than menus and dialogue boxes.",
         zh: "一名罪犯行走在天堂与地狱的分界线上。Traveler 探索如何让道德抉择由探索与剧情节点承载，而不是靠菜单和对话框。",
       },
-      role: { en: "Solo developer — design, narrative, implementation", zh: "独立开发——设计、叙事、实现" },
+      role: { en: "Co-designer & developer (2-person team) — design, narrative, implementation", zh: "共同设计与开发（双人团队）——设计、叙事、实现" },
+      team: { en: "2-person team", zh: "双人团队" }, // TODO(David): teammate name + who did what
       engine: "Unity (3D)",
       timeframe: "2026",
       sections: [],
