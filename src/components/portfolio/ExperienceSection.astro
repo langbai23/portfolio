@@ -4,7 +4,7 @@ import Icon from "../Icon.astro";
 import type { Localized } from "../../data/projects";
 
 /**
- * Team / industry-style experience, kept separate from the project grid.
+ * Team / industry-style experience, kept separate from the project list.
  * Add more entries to this array as they come.
  */
 type Experience = {
@@ -12,7 +12,7 @@ type Experience = {
   project: string;
   org: Localized;
   dates: string;
-  shipped?: Localized; // e.g. "Shipped on Steam, Jul 2026"
+  shipped?: Localized;
   cover?: string;
   links?: { steam?: string; linkedin?: string };
   bullets: Localized[];
@@ -54,51 +54,55 @@ const EXPERIENCE: Experience[] = [
   {
     EXPERIENCE.map((exp) => (
       <article class="exp reveal-item">
-        <div class="exp-meta">
-          <span class="exp-dates">{exp.dates}</span>
-          <T t={exp.org} class="exp-org" />
-          {exp.shipped && <T t={exp.shipped} class="exp-shipped" />}
+        <div class="exp-head">
+          <div class="exp-headline">
+            <h3 class="exp-role">
+              <T t={exp.role} />
+            </h3>
+            <p class="exp-sub">
+              <span class="exp-project">{exp.project}</span>
+              <T t={exp.org} class="exp-org" />
+            </p>
+            <p class="exp-meta">
+              <span>{exp.dates}</span>
+              {exp.shipped && <T t={exp.shipped} class="exp-shipped" />}
+            </p>
+          </div>
+
+          <div class="exp-side">
+            {exp.cover && (
+              <a
+                class="exp-cover"
+                href={exp.links?.steam ?? exp.links?.linkedin ?? "#"}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${exp.project} on Steam`}
+              >
+                <img src={exp.cover} alt={`${exp.project} cover`} loading="lazy" decoding="async" width="460" height="215" />
+              </a>
+            )}
+            {exp.links && (
+              <div class="exp-links">
+                {exp.links.steam && (
+                  <a class="text-link" href={exp.links.steam} target="_blank" rel="noreferrer">
+                    Steam <Icon name="arrow-up-right" size={13} />
+                  </a>
+                )}
+                {exp.links.linkedin && (
+                  <a class="text-link" href={exp.links.linkedin} target="_blank" rel="noreferrer">
+                    LinkedIn <Icon name="arrow-up-right" size={13} />
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
-        <div class="exp-body">
-          <h3 class="exp-role">
-            <T t={exp.role} />
-          </h3>
-          <p class="exp-project">{exp.project}</p>
-          <ul class="exp-bullets">
-            {exp.bullets.map((b) => (
-              <T t={b} as="li" />
-            ))}
-          </ul>
-        </div>
-
-        <div class="exp-side">
-          {exp.cover && (
-            <a
-              class="exp-cover"
-              href={exp.links?.steam ?? exp.links?.linkedin ?? "#"}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${exp.project} on Steam`}
-            >
-              <img src={exp.cover} alt={`${exp.project} cover`} loading="lazy" decoding="async" width="460" height="215" />
-            </a>
-          )}
-          {exp.links && (
-            <div class="exp-links">
-              {exp.links.steam && (
-                <a class="exp-link" href={exp.links.steam} target="_blank" rel="noreferrer">
-                  Steam <Icon name="arrow-up-right" size={13} />
-                </a>
-              )}
-              {exp.links.linkedin && (
-                <a class="exp-link" href={exp.links.linkedin} target="_blank" rel="noreferrer">
-                  LinkedIn <Icon name="arrow-up-right" size={13} />
-                </a>
-              )}
-            </div>
-          )}
-        </div>
+        <ul class="exp-bullets">
+          {exp.bullets.map((b) => (
+            <T t={b} as="li" />
+          ))}
+        </ul>
       </article>
     ))
   }

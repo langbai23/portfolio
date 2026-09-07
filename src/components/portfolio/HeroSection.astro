@@ -1,51 +1,56 @@
 ---
 import { SITE } from "../../data/site";
-import { FEATURED_PROJECT } from "../../data/projects";
+import { PUBLISHED_PROJECTS } from "../../data/projects";
 import Icon from "../Icon.astro";
 
-const featured = FEATURED_PROJECT;
+// Reel: the three newest projects with footage. First tile is the big one.
+const reel = PUBLISHED_PROJECTS.filter((p) => p.clip).slice(0, 3);
 ---
 
-<!-- The hero asset is the latest project's clip; its poster is the LCP image. -->
-<link rel="preload" as="image" href={featured.cover} />
+{reel[0] && <link rel="preload" as="image" href={reel[0].cover} />}
 
 <section class="hero">
   <div class="hero-copy">
-    <p class="eyebrow" data-i18n="heroEyebrow">Game designer &amp; developer, USC</p>
-    <h1 class="hero-name">{SITE.name}</h1>
+    <p class="eyebrow">
+      <span class="eyebrow-name">{SITE.name}</span>
+      <span data-i18n="heroEyebrow">Game designer &amp; developer, USC</span>
+    </p>
+    <h1 class="hero-title" data-i18n="heroTagline">Stories told through systems.</h1>
     <p class="hero-intro" data-i18n="heroIntro">
-      Stories told through systems. USC game design sophomore, Usability Lead on a Steam-shipped
-      title, building narrative games in Unity.
+      USC game design sophomore. Usability Lead on a Steam-shipped title, building narrative games
+      in Unity.
     </p>
     <div class="button-row">
-      <a class="button primary" href="/#projects" data-i18n="heroPrimaryBtn">View projects</a>
+      <a class="button primary" href="/#projects">
+        <span data-i18n="heroPrimaryBtn">View projects</span>
+        <Icon name="arrow-right" size={15} />
+      </a>
       <a class="button" href="/#contact" data-i18n="heroSecondaryBtn">Get in touch</a>
     </div>
   </div>
 
-  <a class="hero-visual" href={`/projects/${featured.id}`} aria-label={`${featured.title} case study`}>
-    <span class="hero-frame">
-      {
-        featured.clip ? (
-          <video
-            poster={featured.cover}
-            src={featured.clip}
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            autoplay
-            data-autoplay-clip
-          />
-        ) : (
-          <img src={featured.cover} alt="" width="1280" height="720" decoding="async" />
-        )
-      }
-    </span>
-    <span class="hero-visual-caption">
-      <span data-i18n="featuredLabel">Latest</span>
-      <strong>{featured.title}</strong>
-      <Icon name="arrow-right" size={15} />
-    </span>
-  </a>
+  <div class="hero-reel" aria-label="Latest projects">
+    {
+      reel.map((p, i) => (
+        <a class="reel-tile" href={`/projects/${p.id}`} style={`--i: ${i}`}>
+          <span class="reel-media">
+            <video
+              poster={p.cover}
+              src={p.clip}
+              muted
+              loop
+              playsinline
+              preload={i === 0 ? "metadata" : "none"}
+              autoplay
+              data-autoplay-clip
+            />
+          </span>
+          <span class="reel-caption">
+            <span class="reel-title">{p.title}</span>
+            <span class="reel-year">{p.year}</span>
+          </span>
+        </a>
+      ))
+    }
+  </div>
 </section>

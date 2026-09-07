@@ -1,6 +1,12 @@
 ---
+import T from "../T.astro";
+import Icon from "../Icon.astro";
 import ProjectCard from "./ProjectCard.astro";
 import { HOME_PROJECTS } from "../../data/projects";
+
+// Games with footage stack on scroll; the rest (UX, tabletop) sit in a pair below.
+const games = HOME_PROJECTS.filter((p) => p.clip || p.youtubeId);
+const others = HOME_PROJECTS.filter((p) => !(p.clip || p.youtubeId));
 ---
 
 <section id="projects">
@@ -9,7 +15,79 @@ import { HOME_PROJECTS } from "../../data/projects";
     Latest work first. Each project opens a case study with my role, process, and footage.
   </p>
 
-  <div class="project-grid">
-    {HOME_PROJECTS.map((project, i) => <ProjectCard project={project} index={i} />)}
+  <div class="stack">
+    {
+      games.map((project, i) => {
+        const href = `/projects/${project.id}`;
+        return (
+          <article class="stack-card" style={`--i: ${i}`}>
+            {
+              project.clip ? (
+                <a class="stack-media" href={href}>
+                  <video
+                    poster={project.cover}
+                    src={project.clip}
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    autoplay
+                    data-autoplay-clip
+                  />
+                </a>
+              ) : (
+                <button
+                  class="stack-media yt-facade"
+                  type="button"
+                  data-youtube-id={project.youtubeId}
+                  data-youtube-title={`${project.title}, gameplay video`}
+                  aria-label={`Play ${project.title} video`}
+                >
+                  <img src={project.cover} alt="" loading="lazy" decoding="async" width="1280" height="720" />
+                  <span class="yt-play-btn"><Icon name="play" size={26} /></span>
+                </button>
+              )
+            }
+            <div class="stack-body">
+              <div class="stack-meta">
+                <T t={project.tag} class="project-tag" />
+                <span class="project-year">{project.year}</span>
+              </div>
+              <h3><a href={href}>{project.title}</a></h3>
+              <T t={project.summary} as="p" class="stack-summary" />
+              <div class="meta-chips">
+                {project.chips.map((chip) => <T t={chip} class="meta-chip" />)}
+              </div>
+              <div class="stack-links">
+                <a class="card-cta" href={href}>
+                  <span data-i18n="caseStudyCta">Read case study</span>
+                  <Icon name="arrow-right" size={14} />
+                </a>
+                {
+                  project.links?.itch && (
+                    <a class="card-ext" href={project.links.itch} target="_blank" rel="noreferrer">
+                      itch.io <Icon name="arrow-up-right" size={13} />
+                    </a>
+                  )
+                }
+              </div>
+            </div>
+          </article>
+        );
+      })
+    }
   </div>
+
+  {
+    others.length > 0 && (
+      <div class="others">
+        <h3 class="others-title" data-i18n="otherWorkTitle">Other work</h3>
+        <div class="others-grid">
+          {others.map((project, i) => (
+            <ProjectCard project={project} index={i} />
+          ))}
+        </div>
+      </div>
+    )
+  }
 </section>

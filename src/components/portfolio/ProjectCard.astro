@@ -17,18 +17,8 @@ const yt = project.youtubeId;
 <article class="project-card reveal-item" style={`--i: ${index}`}>
   {
     clip ? (
-      <a class="project-media project-media-link" href={detailHref}>
-        <video
-          class="project-clip"
-          poster={project.cover}
-          src={clip}
-          muted
-          loop
-          playsinline
-          preload="none"
-          autoplay
-          data-autoplay-clip
-        />
+      <a class="project-media" href={detailHref}>
+        <video poster={project.cover} src={clip} muted loop playsinline preload="none" autoplay data-autoplay-clip />
       </a>
     ) : yt ? (
       <button
@@ -39,12 +29,10 @@ const yt = project.youtubeId;
         aria-label={`Play ${project.title} video`}
       >
         <img src={project.cover} alt="" loading="lazy" decoding="async" width="1280" height="720" />
-        <span class="yt-play-btn">
-          <Icon name="play" size={26} />
-        </span>
+        <span class="yt-play-btn"><Icon name="play" size={24} /></span>
       </button>
     ) : (
-      <a class="project-media project-media-link" href={detailHref}>
+      <a class="project-media" href={detailHref}>
         <img src={project.cover} alt="" loading="lazy" decoding="async" width="1280" height="720" />
       </a>
     )
@@ -58,22 +46,17 @@ const yt = project.youtubeId;
     <h3><a href={detailHref}>{project.title}</a></h3>
     <T t={project.summary} as="p" class="project-summary" />
     <div class="project-card-footer">
-      <div class="meta-chips">
-        {project.chips.map((chip) => <T t={chip} class="meta-chip" />)}
-      </div>
-      <div class="card-links">
-        {
-          project.links?.itch && (
-            <a class="card-ext" href={project.links.itch} target="_blank" rel="noreferrer">
-              itch.io <Icon name="arrow-up-right" size={13} />
-            </a>
-          )
-        }
-        <a class="card-cta" href={detailHref}>
-          <span data-i18n="caseStudyCta">Read case study</span>
-          <Icon name="arrow-right" size={14} />
-        </a>
-      </div>
+      <a class="card-cta" href={detailHref}>
+        <span data-i18n="caseStudyCta">Read case study</span>
+        <Icon name="arrow-right" size={14} />
+      </a>
+      {
+        project.links?.itch && (
+          <a class="card-ext" href={project.links.itch} target="_blank" rel="noreferrer">
+            itch.io <Icon name="arrow-up-right" size={13} />
+          </a>
+        )
+      }
     </div>
   </div>
 </article>
