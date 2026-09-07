@@ -4,9 +4,12 @@ import Icon from "../Icon.astro";
 import ProjectCard from "./ProjectCard.astro";
 import { HOME_PROJECTS } from "../../data/projects";
 
-// Games with footage stack on scroll; the rest (UX, tabletop) sit in a pair below.
-const games = HOME_PROJECTS.filter((p) => p.clip || p.youtubeId);
-const others = HOME_PROJECTS.filter((p) => !(p.clip || p.youtubeId));
+// Current games with footage stack on scroll; other work (UX, tabletop) sits in a
+// pair below; archived (older) projects collapse under "Earlier work".
+const current = HOME_PROJECTS.filter((p) => !p.archived);
+const games = current.filter((p) => p.clip || p.youtubeId);
+const others = current.filter((p) => !(p.clip || p.youtubeId));
+const archived = HOME_PROJECTS.filter((p) => p.archived);
 ---
 
 <section id="projects">
@@ -88,6 +91,25 @@ const others = HOME_PROJECTS.filter((p) => !(p.clip || p.youtubeId));
           ))}
         </div>
       </div>
+    )
+  }
+
+  {
+    archived.length > 0 && (
+      <details class="archive">
+        <summary class="archive-summary">
+          <span class="archive-label">
+            <span data-i18n="earlierWorkTitle">Earlier work</span>
+            <span class="archive-count">{archived.length}</span>
+          </span>
+          <Icon name="arrow-right" size={16} class="archive-chevron" />
+        </summary>
+        <div class="others-grid archive-grid">
+          {archived.map((project, i) => (
+            <ProjectCard project={project} index={i} />
+          ))}
+        </div>
+      </details>
     )
   }
 </section>

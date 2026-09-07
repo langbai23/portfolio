@@ -836,6 +836,66 @@ const resolvedOgImage = ogImage
     gap: 18px;
   }
 
+  /* Earlier work: collapsed by default. */
+  .archive {
+    margin-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  .archive-summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .archive-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .archive-summary:hover,
+  .archive[open] .archive-summary {
+    color: var(--text);
+  }
+
+  .archive-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .archive-count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    border-radius: var(--r-pill);
+    background: var(--surface-2);
+    color: var(--text-soft);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .archive-chevron {
+    transition: transform 0.3s var(--ease);
+  }
+
+  .archive[open] .archive-chevron {
+    transform: rotate(90deg);
+  }
+
+  .archive-grid {
+    padding-bottom: 8px;
+  }
+
   /* --------------------------- reveal ------------------------------ */
   .reveal-item {
     opacity: 0;

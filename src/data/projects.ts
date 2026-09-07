@@ -23,6 +23,7 @@ export type ProjectEntry = {
   title: string;
   year: number;
   published: boolean;
+  archived?: boolean; // older work: collapsed under "Earlier work" on the home page
   status: Localized; // small pill, e.g. "Released"
   tag: Localized; // genre / discipline line
   summary: Localized; // card description
@@ -230,6 +231,7 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     title: "After They're Gone",
     year: 2025,
     published: true,
+    archived: true,
     status: { en: "Unity 3D", zh: "Unity 3D" },
     tag: { en: "Environmental Storytelling", zh: "环境叙事" },
     summary: {
@@ -265,6 +267,7 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     title: "Overtale",
     year: 2024,
     published: true,
+    archived: true,
     status: { en: "Released", zh: "已发布" },
     tag: { en: "2D · Pixel · Shooter", zh: "2D · 像素 · 射击" },
     summary: {
