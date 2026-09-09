@@ -5,7 +5,7 @@ import ProjectCard from "./ProjectCard.astro";
 import { HOME_PROJECTS } from "../../data/projects";
 
 // Current games with footage stack on scroll; other work (UX, tabletop) sits in a
-// pair below; archived (older) projects collapse under "Earlier work".
+// pair below; archived projects collapse under "Other works".
 const current = HOME_PROJECTS.filter((p) => !p.archived);
 const games = current.filter((p) => p.clip || p.youtubeId);
 const others = current.filter((p) => !(p.clip || p.youtubeId));
@@ -84,7 +84,7 @@ const archived = HOME_PROJECTS.filter((p) => p.archived);
   {
     others.length > 0 && (
       <div class="others">
-        <h3 class="others-title" data-i18n="otherWorkTitle">Other work</h3>
+        <h3 class="others-title" data-i18n="otherWorkTitle">Design &amp; tabletop</h3>
         <div class="others-grid">
           {others.map((project, i) => (
             <ProjectCard project={project} index={i} />
@@ -99,7 +99,7 @@ const archived = HOME_PROJECTS.filter((p) => p.archived);
       <details class="archive">
         <summary class="archive-summary">
           <span class="archive-label">
-            <span data-i18n="earlierWorkTitle">Earlier work</span>
+            <span data-i18n="earlierWorkTitle">Other works</span>
             <span class="archive-count">{archived.length}</span>
           </span>
           <Icon name="arrow-right" size={16} class="archive-chevron" />

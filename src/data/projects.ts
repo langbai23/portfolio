@@ -227,6 +227,71 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     },
   },
   {
+    id: "roomnumbers",
+    title: "Room Numbers",
+    year: 2026,
+    published: true,
+    archived: true,
+    status: { en: "Unity 3D", zh: "Unity 3D" },
+    tag: { en: "First-person \u00b7 Puzzle", zh: "\u7b2c\u4e00\u4eba\u79f0 \u00b7 \u89e3\u8c1c" },
+    summary: {
+      en: "A first-person puzzle game about a night shift in a facility running on backup power. The generator carries only two circuits at a time, so lighting the room you need means cutting the light somewhere else, and every door code is a number you can only read while its room is lit.",
+      zh: "\u4e00\u6b3e\u5173\u4e8e\u201c\u591c\u73ed\u201d\u7684\u7b2c\u4e00\u4eba\u79f0\u89e3\u8c1c\u6e38\u620f\uff1a\u8bbe\u65bd\u4e3b\u7535\u8def\u6545\u969c\uff0c\u53ea\u5269\u5907\u7528\u53d1\u7535\u673a\uff0c\u800c\u5b83\u4e00\u6b21\u53ea\u5e26\u5f97\u52a8\u4e24\u6761\u7ebf\u8def\u3002\u60f3\u70b9\u4eae\u9700\u8981\u7684\u623f\u95f4\uff0c\u5c31\u5f97\u6389\u6389\u53e6\u4e00\u95f4\u7684\u706f\uff1b\u800c\u6bcf\u4e00\u9053\u95e8\u7684\u5bc6\u7801\uff0c\u90fd\u662f\u53ea\u6709\u623f\u95f4\u901a\u7535\u65f6\u624d\u770b\u5f97\u89c1\u7684\u6570\u5b57\u3002",
+    },
+    tools: ["Unity 6", "C#", "URP", "3D", "Blender"],
+    chips: [
+      { en: "Solo Dev", zh: "\u72ec\u7acb\u5f00\u53d1" },
+      { en: "Course Project", zh: "\u8bfe\u7a0b\u4f5c\u4e1a" },
+      { en: "Systems", zh: "\u7cfb\u7edf" },
+    ],
+    cover: "/gameplay/roomnumbers.jpg",
+    clip: "/gameplay/roomnumbers.mp4",
+    youtubeId: "sJAe14ToTNk",
+    links: { youtube: "https://www.youtube.com/watch?v=sJAe14ToTNk", itch: "https://baoy.itch.io/room-numbers" },
+    caseStudy: {
+      lede: {
+        en: "Eight rooms, four-digit keypads, and a backup generator that can only carry two circuits. The number you need for a code is painted in a room that has to be lit before you can read it, so the puzzle is never \u201cfind the code\u201d. It is \u201cdecide what to leave in the dark\u201d.",
+        zh: "\u516b\u4e2a\u623f\u95f4\u3001\u56db\u4f4d\u6570\u5bc6\u7801\u952e\u76d8\uff0c\u4ee5\u53ca\u4e00\u53f0\u4e00\u6b21\u53ea\u80fd\u5e26\u4e24\u6761\u7ebf\u8def\u7684\u5907\u7528\u53d1\u7535\u673a\u3002\u5bc6\u7801\u91cc\u7684\u6570\u5b57\u5199\u5728\u623f\u95f4\u91cc\uff0c\u800c\u623f\u95f4\u5f97\u5148\u4eae\u8d77\u6765\u4f60\u624d\u8bfb\u5f97\u5230\u3002\u6240\u4ee5\u8fd9\u4e2a\u8c1c\u9898\u4ece\u6765\u4e0d\u662f\u201c\u627e\u5bc6\u7801\u201d\uff0c\u800c\u662f\u201c\u51b3\u5b9a\u628a\u4ec0\u4e48\u7559\u5728\u9ed1\u6697\u91cc\u201d\u3002",
+      },
+      role: {
+        en: "Solo project: design, C# gameplay code, level layout, Blender models, lighting, UI, and audio.",
+        zh: "\u72ec\u7acb\u9879\u76ee\u2014\u2014\u8bbe\u8ba1\u3001C# \u73a9\u6cd5\u4ee3\u7801\u3001\u5173\u5361\u5e03\u5c40\u3001Blender \u6a21\u578b\u3001\u706f\u5149\u3001UI \u4e0e\u97f3\u6548\u3002",
+      },
+      team: { en: "Solo", zh: "\u72ec\u7acb\u5b8c\u6210" },
+      engine: "Unity 6 (URP, 3D)",
+      timeframe: "2026 \u00b7 USC CTIN 389",
+      sections: [
+        {
+          heading: { en: "Power is the real key", zh: "\u7535\u529b\u624d\u662f\u771f\u6b63\u7684\u94a5\u5319" },
+          body: [
+            {
+              en: "Every locked door wants four digits, and every digit lives on a screen or a sign inside a room. The main feed is down, so those rooms only read out when the backup generator is feeding them, and the generator tops out at two circuits. Reading a code is therefore a routing problem: pull power off a corridor you have already crossed, push it into the room you still need, and walk back through the dark you just made.",
+              zh: "\u6bcf\u4e00\u9053\u9501\u4f4f\u7684\u95e8\u90fd\u8981\u56db\u4f4d\u6570\uff0c\u800c\u6bcf\u4e00\u4f4d\u6570\u5b57\u90fd\u957f\u5728\u67d0\u4e2a\u623f\u95f4\u7684\u5c4f\u5e55\u6216\u724c\u5b50\u4e0a\u3002\u4e3b\u7535\u8def\u65ad\u4e86\uff0c\u90a3\u4e9b\u623f\u95f4\u53ea\u6709\u5907\u7528\u53d1\u7535\u673a\u4f9b\u7535\u65f6\u624d\u4f1a\u663e\u793a\uff0c\u800c\u53d1\u7535\u673a\u5c01\u9876\u5728\u4e24\u6761\u7ebf\u8def\u3002\u4e8e\u662f\u201c\u8bfb\u5230\u5bc6\u7801\u201d\u53d8\u6210\u4e86\u4e00\u9053\u8c03\u5ea6\u9898\uff1a\u628a\u7535\u4ece\u5df2\u7ecf\u8d70\u8fc7\u7684\u8d70\u5eca\u62bd\u8d70\uff0c\u9001\u8fdb\u8fd8\u9700\u8981\u7684\u623f\u95f4\uff0c\u7136\u540e\u518d\u7a7f\u56de\u4f60\u521a\u4eb2\u624b\u9020\u51fa\u6765\u7684\u9ed1\u6697\u3002",
+            },
+            {
+              en: "The two-circuit limit is not posted anywhere at the start. The panel just says BACKUP GEN, and the first time a player throws a third breaker it buzzes, flashes OVERLOAD, and drops everything. Only then does the label change to read 2 CIRCUITS MAX. The failure teaches the rule, and the sign afterwards is only there so the lesson sticks.",
+              zh: "\u4e00\u5f00\u59cb\uff0c\u201c\u4e24\u6761\u7ebf\u8def\u201d\u8fd9\u4e2a\u9650\u5236\u5e76\u6ca1\u6709\u5199\u5728\u4efb\u4f55\u5730\u65b9\u3002\u9762\u677f\u4e0a\u53ea\u5199\u7740 BACKUP GEN\uff1b\u73a9\u5bb6\u7b2c\u4e00\u6b21\u63a8\u4e0b\u7b2c\u4e09\u4e2a\u95f8\u5200\u65f6\uff0c\u7535\u5b50\u566a\u4e00\u58f0\u3001\u95ea\u51fa OVERLOAD\uff0c\u5168\u90e8\u8df3\u95f8\u3002\u4e5f\u662f\u5728\u90a3\u4e00\u523b\uff0c\u6807\u7b7e\u624d\u53d8\u6210 2 CIRCUITS MAX\u3002\u89c4\u5219\u662f\u5931\u8d25\u6559\u4f1a\u7684\uff0c\u540e\u6765\u90a3\u884c\u5b57\u53ea\u8d1f\u8d23\u8ba9\u5b83\u8bb0\u5f97\u4f4f\u3002",
+            },
+          ],
+        },
+        {
+          heading: { en: "One way forward", zh: "\u53ea\u80fd\u5411\u524d" },
+          body: [
+            {
+              en: "Doors drop behind the player and refuse their own code afterwards, so the facility never lets you undo a leg of the route. That constraint is what makes the power choices matter: if the answer were still reachable behind you, cutting a circuit would cost nothing.",
+              zh: "\u95e8\u4f1a\u5728\u73a9\u5bb6\u8eab\u540e\u843d\u4e0b\uff0c\u4e4b\u540e\u8fde\u81ea\u5df1\u7684\u5bc6\u7801\u4e5f\u4e0d\u518d\u63a5\u53d7\u2014\u2014\u8fd9\u5ea7\u8bbe\u65bd\u4e0d\u5141\u8bb8\u4f60\u56de\u5934\u91cd\u8d70\u4e00\u6bb5\u8def\u3002\u6b63\u662f\u8fd9\u4e2a\u9650\u5236\u8ba9\u4f9b\u7535\u7684\u53d6\u820d\u771f\u7684\u6709\u5206\u91cf\uff1a\u5982\u679c\u7b54\u6848\u968f\u65f6\u80fd\u56de\u5934\u53bb\u62ff\uff0c\u5173\u6389\u4e00\u6761\u7ebf\u8def\u5c31\u4e0d\u9700\u8981\u4ee3\u4ef7\u4e86\u3002",
+            },
+            {
+              en: "Not every number is something you can see. One code arrives over an intercom as a run of beeps, with a long tone standing in for zero, so a room with no working screen still has an answer in it. The run ends on an elapsed-time readout and a NIGHT SHIFT OVER card, which turns a short course exercise into something players compare runs on.",
+              zh: "\u5e76\u4e0d\u662f\u6bcf\u4e2a\u6570\u5b57\u90fd\u770b\u5f97\u89c1\u3002\u6709\u4e00\u7ec4\u5bc6\u7801\u662f\u4ece\u5bf9\u8bb2\u673a\u91cc\u4ee5\u4e00\u4e32\u8702\u9e23\u4f20\u51fa\u6765\u7684\uff0c\u957f\u97f3\u4ee3\u8868 0\uff1b\u6240\u4ee5\u4e00\u4e2a\u6ca1\u6709\u53ef\u7528\u5c4f\u5e55\u7684\u623f\u95f4\uff0c\u91cc\u9762\u4f9d\u7136\u85cf\u7740\u7b54\u6848\u3002\u6d41\u7a0b\u7ed3\u675f\u5728\u4e00\u4e2a\u8ba1\u65f6\u8bfb\u6570\u548c\u4e00\u5f20 NIGHT SHIFT OVER \u7684\u5b57\u5e55\u4e0a\uff0c\u628a\u4e00\u4e2a\u77ed\u5c0f\u7684\u8bfe\u7a0b\u7ec3\u4e60\u53d8\u6210\u4e86\u53ef\u4ee5\u6bd4\u6210\u7ee9\u7684\u4e1c\u897f\u3002",
+            },
+          ],
+        },
+      ],
+      gallery: [],
+    },
+  },
+  {
     id: "after-theyre-gone",
     title: "After They're Gone",
     year: 2025,

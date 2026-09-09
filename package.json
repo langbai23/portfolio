@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@phosphor-icons/core": "^2.1.1",
-    "astro": "^6.1.7"
+    "astro": "^6.1.7",
+    "playwright-core": "^1.63.0"
   }
 }
