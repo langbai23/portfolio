@@ -65,8 +65,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     ],
     cover: "/gameplay/glimmer.jpg",
     clip: "/gameplay/glimmer.mp4",
-    youtubeId: "z9T54IoSa3k",
-    links: { youtube: "https://www.youtube.com/watch?v=z9T54IoSa3k", itch: "https://baoy.itch.io/glimmer" },
+    youtubeId: "3up0J3ibvLk",
+    links: { youtube: "https://www.youtube.com/watch?v=3up0J3ibvLk", itch: "https://baoy.itch.io/glimmer" },
     caseStudy: {
       lede: {
         en: "“At that moment, my world was filled with many glimmers.” Glimmer makes emotional recovery playable: the more you're hurt, the darker and narrower your vision, until friends, notes, and small kindnesses light the world back up, one object at a time.",
@@ -141,8 +141,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     ],
     cover: "/gameplay/fishitting.jpg",
     clip: "/gameplay/fishitting.mp4",
-    youtubeId: "wcRClv32Hik",
-    links: { youtube: "https://youtu.be/wcRClv32Hik", itch: "https://baoy.itch.io/fishitting" },
+    youtubeId: "b57m5XBikCQ",
+    links: { youtube: "https://www.youtube.com/watch?v=b57m5XBikCQ", itch: "https://baoy.itch.io/fishitting" },
     caseStudy: {
       lede: {
         en: "Fishitting looks like a scrappy survival loop (forage, collect, upgrade, brighten) right up until it isn't. The brighter your light burns, the more fish it summons, until the crowd snaps the anchor rope holding you down. Freedom, the surface, and then the pollution that was waiting there the whole time.",
@@ -202,8 +202,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     ],
     cover: "/gameplay/traveler.jpg",
     clip: "/gameplay/traveler.mp4",
-    youtubeId: "rh9rtkyCN-U",
-    links: { youtube: "https://www.youtube.com/watch?v=rh9rtkyCN-U", itch: "https://baoy.itch.io/traveler" },
+    youtubeId: "D8GdOhjwdcM",
+    links: { youtube: "https://www.youtube.com/watch?v=D8GdOhjwdcM", itch: "https://baoy.itch.io/traveler" },
     caseStudy: {
       // TODO(David): replace lede with your own positioning line, then add
       // sections: 你负责什么 / 1-2 个设计决策深挖 / 截图 gallery。
@@ -246,8 +246,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     ],
     cover: "/gameplay/after.jpg",
     clip: "/gameplay/after.mp4",
-    youtubeId: "zuhjDCuK5eU",
-    links: { youtube: "https://www.youtube.com/watch?v=zuhjDCuK5eU", itch: "https://baoy.itch.io/after-theyre-gone" },
+    youtubeId: "Tu06C7uhwh0",
+    links: { youtube: "https://www.youtube.com/watch?v=Tu06C7uhwh0", itch: "https://baoy.itch.io/after-theyre-gone" },
     caseStudy: {
       // TODO(David): add sections + gallery screenshots.
       lede: {
@@ -282,8 +282,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     ],
     cover: "/gameplay/overtale.jpg",
     clip: "/gameplay/overtale.mp4",
-    youtubeId: "QkLvMYWeGDo",
-    links: { youtube: "https://www.youtube.com/watch?v=QkLvMYWeGDo&t=1s", itch: "https://baoy.itch.io/overtale" },
+    youtubeId: "r45eLuVUnGU",
+    links: { youtube: "https://www.youtube.com/watch?v=r45eLuVUnGU", itch: "https://baoy.itch.io/overtale" },
     caseStudy: {
       // TODO(David): add sections + gallery screenshots.
       lede: {
