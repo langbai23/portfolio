@@ -180,8 +180,8 @@ const resolvedOgImage = ogImage
   nav {
     position: sticky;
     top: 0;
+    /* lightningcss adds -webkit-backdrop-filter; see astro.config.mjs */
     backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
     background: var(--nav-bg);
     border-bottom: 1px solid var(--line);
     z-index: 10;
