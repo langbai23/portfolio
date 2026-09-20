@@ -6,16 +6,23 @@ of this file.
 
 ## What this is
 
-David Bao's portfolio site. Astro 6.x, fully static, no backend.
+David Bao's portfolio site. Astro 7.x, fully static, no backend.
 Deployed on Vercel, connected to this GitHub repo.
 
 **Pushing `main` deploys to production.** There is no staging step:
 
 ```
-edit → git push origin main → Vercel builds → live
+git pull → edit → local preview → git push origin main → Vercel builds → live
 ```
 
-So preview locally before pushing anything visual or structural.
+Two hard rules follow from that, and they are not negotiable:
+
+1. **Pull before you start.** This repo is worked on from more than one machine,
+   each with its own agent. `git pull` is the first action of a session, not an
+   afterthought. Starting from a stale `main` is how the two machines collide.
+2. **Push is deploy, so push last and only on request.** The user previews
+   locally first. Never push anything visual or structural they have not seen,
+   and do not push at all unless they ask for it.
 
 ## Commands
 
@@ -23,11 +30,26 @@ Requires **Node >= 22.12.0** (enforced by `package.json` `engines`).
 
 ```bash
 npm install          # first time on a new machine
-npm run dev          # local preview (default port 4321)
+npm run dev          # local preview (port 4321, or the next free port)
 npm run build        # static output to dist/
 ```
 
-`npm run dev` sometimes serves a stale `Layout.astro` stylesheet or stale
+Since Astro 7, `npm run dev` **daemonizes**: it prints its URL, returns
+immediately, and keeps serving in the background. Control it with:
+
+```bash
+npx astro dev status   # is one running, on which port, which pid
+npx astro dev logs     # its output
+npx astro dev stop     # shut it down
+```
+
+Two consequences. A server you forgot about holds 4321, so the next `npm run
+dev` silently lands on 4322 and you preview the wrong thing — run `astro dev
+status` before assuming a port. And a dev server left running across an
+`npm install` or a version upgrade keeps the old `node_modules` in memory and
+starts serving 500s; stop and restart it.
+
+`npm run dev` also sometimes serves a stale `Layout.astro` stylesheet or stale
 `projects.ts` — the browser gets CSS without the new rules. Restart the dev
 server. **Before shipping, trust `npm run build` + grepping `dist/` over the
 dev server.**
@@ -110,11 +132,15 @@ memory.
 
 ## Working alongside other agents
 
-The user sometimes runs a second agent (Codex) against this same repo. Before
-editing, check `git worktree list` and `git status`. If another agent is
-active, work on a branch in a separate worktree and merge with
-`git merge --ff-only` after the user confirms, rather than editing `main`
-in place.
+This repo is edited from more than one machine: this one, plus a Mac that also
+runs Claude. The user sometimes runs a second agent (Codex) against the same
+checkout. So other people's commits land in `origin/main` between your
+sessions.
+
+Before editing: `git pull`, then check `git worktree list` and `git status`.
+If another agent is active in this checkout, work on a branch in a separate
+worktree and merge with `git merge --ff-only` after the user confirms, rather
+than editing `main` in place.
 
 ## Known limits
 
