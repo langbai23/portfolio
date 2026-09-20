@@ -14,7 +14,15 @@ import Icon from "../Icon.astro";
         <a href="/#contact" data-i18n="navContact">Contact</a>
         {
           SITE.resumeUrl && (
-            <a href={SITE.resumeUrl} target="_blank" rel="noreferrer" data-i18n="navResume">
+            <a
+              href={SITE.resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-i18n="navResume"
+              data-i18n-href
+              data-href-en={SITE.resumeUrl}
+              data-href-zh={SITE.resumeUrlZh || SITE.resumeUrl}
+            >
               Resume
             </a>
           )

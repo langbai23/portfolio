@@ -1,10 +1,12 @@
 <script>
   // @ts-nocheck — plain browser script, no types.
   /**
-   * Two translation mechanisms:
+   * Three translation mechanisms:
    *  1. Static UI strings → `data-i18n="key"` + the dictionary below.
    *  2. Project content   → `data-i18n-dual` + `data-en` / `data-zh`
    *     attributes rendered from src/data/projects.ts (see T.astro).
+   *  3. Per-language links → `data-i18n-href` + `data-href-en` / `data-href-zh`
+   *     (the resume PDFs in NavBar / ContactSection).
    */
   const translations = {
     en: {
@@ -134,6 +136,12 @@
     document.querySelectorAll("[data-i18n-dual]").forEach((node) => {
       const text = node.getAttribute(lang === "zh" ? "data-zh" : "data-en");
       if (text) node.textContent = text;
+    });
+
+    // Links whose target differs per language (the resume PDFs).
+    document.querySelectorAll("[data-i18n-href]").forEach((node) => {
+      const href = node.getAttribute(lang === "zh" ? "data-href-zh" : "data-href-en");
+      if (href) node.setAttribute("href", href);
     });
 
     document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");

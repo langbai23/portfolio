@@ -10,8 +10,10 @@ export const SITE = {
   linkedin: "https://www.linkedin.com/in/yudavidbao/",
   phone: "+12134490511",
   phoneDisplay: "(213) 449-0511",
-  /** TODO(David): drop resume.pdf into /public and set this to "/resume.pdf" */
-  resumeUrl: "",
+  /** English resume, served from /public. Shown while the site is in EN mode. */
+  resumeUrl: "/David-Bao-Resume.pdf",
+  /** Chinese resume. Swapped in by LanguageScript when the site is in ZH mode. */
+  resumeUrlZh: "/Bao-Yu-Resume-zh.pdf",
   /** TODO(David): set your GitHub profile URL when ready */
   github: "",
 };

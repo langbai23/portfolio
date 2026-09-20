@@ -28,7 +28,15 @@ import Icon from "../Icon.astro";
       }
       {
         SITE.resumeUrl && (
-          <a class="text-link" href={SITE.resumeUrl} target="_blank" rel="noreferrer">
+          <a
+            class="text-link"
+            href={SITE.resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-i18n-href
+            data-href-en={SITE.resumeUrl}
+            data-href-zh={SITE.resumeUrlZh || SITE.resumeUrl}
+          >
             <span data-i18n="contactResumeLabel">Resume (PDF)</span>
             <Icon name="arrow-up-right" size={14} />
           </a>
