@@ -234,7 +234,6 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     title: "Bolasta",
     year: 2026,
     published: true,
-    archived: true,
     status: { en: "In development", zh: "开发中" },
     tag: { en: "Tactics · Systems Design · In development", zh: "战棋 · 系统设计 · 开发中" },
     summary: {

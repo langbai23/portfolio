@@ -81,6 +81,22 @@ keys no longer match their labels:
 Changing either label means editing **both** `LanguageScript.astro` and
 `ProjectsSection.astro`. Editing one and not the other is the usual bug.
 
+## Adding a finished game
+
+`NEW-PROJECT-PROMPT.md` at the repo root is the intake questionnaire the user
+pastes to whichever agent built the game. Its answers are the raw material for
+a `projects.ts` entry and an itch.io page.
+
+Two things that template exists to prevent, both learned the hard way:
+
+- **Invented measurements.** A case study once claimed specific playtest
+  numbers that nothing backed up. Design intent ("tuned so both routes barely
+  win") is fair; measured results ("both routes end at exactly 7 HP") are not,
+  unless the user confirms them. This copy is read by recruiters.
+- **Media that does not match the site.** Clips must be 1280x720, silent,
+  H.264, roughly 10 to 15 seconds. The template makes the game agent either
+  produce them or create a `portfolio-media/` folder for the user to fill.
+
 ## Bilingual (EN / ZH)
 
 Three mechanisms, all driven by `LanguageScript.astro`:
