@@ -235,8 +235,8 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     year: 2026,
     published: true,
     archived: true,
-    status: { en: "Unity 6 · URP", zh: "Unity 6 · URP" },
-    tag: { en: "Tactics · Systems Design", zh: "战棋 · 系统设计" },
+    status: { en: "In development", zh: "开发中" },
+    tag: { en: "Tactics · Systems Design · In development", zh: "战棋 · 系统设计 · 开发中" },
     summary: {
       en: "A turn based grid tactics game built around one irreversible choice. A Devourer blocks the corridor and opens its mouth: feed it one of your two skills or you do not pass. The greyed icon stays in your bar for the rest of the run, the second half is still winnable but twice as long and three times as costly, and the last fight is the Devourer using what it ate against you.",
       zh: "回合制方格战棋，整局围绕一个不可撤销的选择。吞噬者堵在走廊里张开嘴：不献祭两个技能中的一个，就过不去。灰掉的图标会在技能栏上留到通关；后半程仍然能赢，但要多花一倍回合、多掉三倍血。最后一战，吞噬者用它吃掉的那个技能打你。",
@@ -276,12 +276,12 @@ export const ALL_PROJECTS: ProjectEntry[] = [
           heading: { en: "Make the regret countable", zh: "把后悔变成可以数的东西" },
           body: [
             {
-              en: "Regret is easy to put in a pitch and hard to put in a build. The second arena solves it with arithmetic: each route meets one wave that its remaining skill is wrong for. Keeping Pierce turns a swarm wave from four turns into eight. Keeping Shockwave turns an armored wave from three turns into eight.",
-              zh: "「后悔」写在策划案里很容易，做进构建里很难。第二个竞技场用算术解决：每条路线都会碰到一波「手里这个技能恰好不对」的敌人。留贯穿，虫群那一波从四回合变八回合；留震荡，肉盾那一波从三回合变八回合。",
+              en: "Regret is easy to put in a pitch and hard to put in a build. The second arena solves it with arithmetic: each route meets one wave that its remaining skill is wrong for, and that wave is tuned to take roughly twice the turns it would have cost with the skill that was fed to the Devourer.",
+              zh: "「后悔」写在策划案里很容易，做进构建里很难。第二个竞技场用算术解决：每条路线都会碰到一波「手里这个技能恰好不对」的敌人，而那一波被调成大约要多花一倍的回合——正是献祭掉的那个技能本可以省下的。",
             },
             {
-              en: "The target ratio is roughly double the turns and triple the damage taken, while staying winnable either way. Play mode regression runs on both routes finish at exactly 7 HP out of 50 with zero deaths, which is the number the tuning was aimed at: close enough to losing to feel it, never close enough to excuse it.",
-              zh: "目标比例是大约两倍回合、三倍掉血，同时两条路都保证能赢。两条路线的 Play 模式回归测试都是 50 血打到剩 7 血、零死亡收尾——这正是调参瞄准的数字：离输近到足以感受到，又远到不能拿来当借口。",
+              en: "The target ratio is roughly double the turns and triple the damage taken, while staying winnable either way. Both routes are tuned to end in single digit health out of fifty without a death: close enough to losing to feel it, never close enough to excuse it.",
+              zh: "目标比例是大约两倍回合、三倍掉血，同时两条路都保证能赢。两条路线都调成 50 血打到只剩个位数、且不出现阵亡——离输近到足以感受到，又远到不能拿来当借口。",
             },
           ],
         },
@@ -295,6 +295,19 @@ export const ALL_PROJECTS: ProjectEntry[] = [
             {
               en: "The no-text rule was the sharpest of the three. It forced the corridor to communicate an irreversible trade using nothing but a mouth, two icons, and what happens afterwards. That constraint is the reason the moment reads at all.",
               zh: "三条里最锋利的是无文字。它逼着走廊只能用一张嘴、两个图标，以及「选完之后发生了什么」来说清一笔不可逆的交易。也正是这条约束让这个瞬间立得住。",
+            },
+          ],
+        },
+        {
+          heading: { en: "Where it goes next", zh: "接下来往哪走" },
+          body: [
+            {
+              en: "What exists now is a vertical slice: two arenas, one corridor, one sacrifice. It is enough to prove the beat lands, and short enough that the whole shape stays visible in a single sitting.",
+              zh: "现在做出来的是一个纵切片：两个竞技场、一条走廊、一次献祭。足够证明这个节拍成立，也短到能让人一次坐下就看清整个形状。",
+            },
+            {
+              en: "The structure generalises cleanly. Every skill added is one more route through the corridor, and every route is one more wave the player is now wrong for. The interesting version of this game is the one where the Devourer has eaten something different each run, and the build that exists is the smallest thing that could test whether that version is worth making.",
+              zh: "这套结构可以干净地扩展。每多一个技能，就多一条穿过走廊的路线；每多一条路线，就多一波「玩家此刻恰好不对」的敌人。这个游戏真正有意思的版本，是吞噬者每一局吃掉的东西都不一样的那个——而现有的构建，正是用来验证那个版本值不值得做的最小实验。",
             },
           ],
         },
