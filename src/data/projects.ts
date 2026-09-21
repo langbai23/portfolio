@@ -230,6 +230,85 @@ export const ALL_PROJECTS: ProjectEntry[] = [
     },
   },
   {
+    id: "bolasta",
+    title: "Bolasta",
+    year: 2026,
+    published: true,
+    archived: true,
+    status: { en: "Unity 6 · URP", zh: "Unity 6 · URP" },
+    tag: { en: "Tactics · Systems Design", zh: "战棋 · 系统设计" },
+    summary: {
+      en: "A turn based grid tactics game built around one irreversible choice. A Devourer blocks the corridor and opens its mouth: feed it one of your two skills or you do not pass. The greyed icon stays in your bar for the rest of the run, the second half is still winnable but twice as long and three times as costly, and the last fight is the Devourer using what it ate against you.",
+      zh: "回合制方格战棋，整局围绕一个不可撤销的选择。吞噬者堵在走廊里张开嘴：不献祭两个技能中的一个，就过不去。灰掉的图标会在技能栏上留到通关；后半程仍然能赢，但要多花一倍回合、多掉三倍血。最后一战，吞噬者用它吃掉的那个技能打你。",
+    },
+    tools: ["Unity 6", "C#", "URP", "Turn-based combat", "Systems design"],
+    chips: [
+      { en: "Solo", zh: "独立" },
+      { en: "Grid tactics", zh: "方格战棋" },
+      { en: "Wordless UI", zh: "无文字 UI" },
+    ],
+    cover: "/gameplay/bolasta.jpg",
+    clip: "/gameplay/bolasta.mp4",
+    links: { itch: "https://baoy.itch.io/bolasta" },
+    caseStudy: {
+      lede: {
+        en: "The whole design answers to one sentence: the player wins, but regrets it, and knows the choice was their own. Everything else in the build exists to make that regret arrive on schedule and be impossible to pin on anyone else.",
+        zh: "整个设计只向一句话负责：玩家赢了，但后悔，而且知道是自己亲手选的。其余一切都是为了让这份后悔准时到达，并且赖不到第二个人头上。",
+      },
+      role: { en: "Solo: design, systems, implementation", zh: "独立——设计、系统、实现" },
+      engine: "Unity 6000.6.0f1",
+      timeframe: "2026",
+      sections: [
+        {
+          heading: { en: "Teach the habit, then take it", zh: "先养成习惯，再拿走" },
+          body: [
+            {
+              en: "The player gets a basic attack and two skills: Shockwave hits a group, Pierce hits one target hard. The first arena runs three waves that alternate between them on purpose, a swarm wave then an armored wave then both at once, until reaching for the right skill stops being a decision and becomes a reflex.",
+              zh: "玩家有一个普攻和两个技能：震荡打一群，贯穿打单体。第一个竞技场的三波敌人是故意交替的——先虫群，再肉盾，然后两者同时上。目的是让「拿对技能」从一个决策变成一个反射。",
+            },
+            {
+              en: "Then the corridor. The Devourer is immune to damage, so there is no clever way past it and no way to keep both. Sacrificing a skill leaves its icon on the bar, greyed out, permanently. It is not a slot that frees up, and it is never handed back.",
+              zh: "然后是走廊。吞噬者免疫伤害，所以没有聪明的绕过方式，也没有两个都保住的办法。献祭掉的技能会以灰图标的形式永久留在技能栏上。那不是一个空出来的位置，而且永远不会还给你。",
+            },
+          ],
+        },
+        {
+          heading: { en: "Make the regret countable", zh: "把后悔变成可以数的东西" },
+          body: [
+            {
+              en: "Regret is easy to put in a pitch and hard to put in a build. The second arena solves it with arithmetic: each route meets one wave that its remaining skill is wrong for. Keeping Pierce turns a swarm wave from four turns into eight. Keeping Shockwave turns an armored wave from three turns into eight.",
+              zh: "「后悔」写在策划案里很容易，做进构建里很难。第二个竞技场用算术解决：每条路线都会碰到一波「手里这个技能恰好不对」的敌人。留贯穿，虫群那一波从四回合变八回合；留震荡，肉盾那一波从三回合变八回合。",
+            },
+            {
+              en: "The target ratio is roughly double the turns and triple the damage taken, while staying winnable either way. Play mode regression runs on both routes finish at exactly 7 HP out of 50 with zero deaths, which is the number the tuning was aimed at: close enough to losing to feel it, never close enough to excuse it.",
+              zh: "目标比例是大约两倍回合、三倍掉血，同时两条路都保证能赢。两条路线的 Play 模式回归测试都是 50 血打到剩 7 血、零死亡收尾——这正是调参瞄准的数字：离输近到足以感受到，又远到不能拿来当借口。",
+            },
+          ],
+        },
+        {
+          heading: { en: "Constraints that did the design work", zh: "真正在做设计的是约束" },
+          body: [
+            {
+              en: "Three rules held for the whole build. No randomness anywhere: fixed damage, guaranteed hits, no crits, fully deterministic enemies, so an ugly wave is never luck. No explanatory text in the game: rules are carried by highlight, colour, icon and animation, and the corridor choice shows no words and no digits at all. No bought art: every unit is a primitive, and the eleven PNGs in the project are portraits and skill icons rendered offline from the project's own geometry.",
+              zh: "整个构建守住三条规则。一、没有随机：伤害固定、命中必中、没有暴击、敌人行为完全确定，所以打得难看永远不能怪运气。二、游戏内不出现解释性文字：规则靠高亮、颜色、图标和动画自解释，走廊那个选择连数字都没有。三、不买美术：所有单位都是原始几何体，工程里十一张 PNG 全是用工程自有模型离线渲染的头像和技能图标。",
+            },
+            {
+              en: "The no-text rule was the sharpest of the three. It forced the corridor to communicate an irreversible trade using nothing but a mouth, two icons, and what happens afterwards. That constraint is the reason the moment reads at all.",
+              zh: "三条里最锋利的是无文字。它逼着走廊只能用一张嘴、两个图标，以及「选完之后发生了什么」来说清一笔不可逆的交易。也正是这条约束让这个瞬间立得住。",
+            },
+          ],
+        },
+      ],
+      gallery: [
+        { src: "/projects/bolasta/01.png", alt: "Bolasta title screen" },
+        { src: "/projects/bolasta/02.png", alt: "Arena A, the first wave of swarm enemies on the grid" },
+        { src: "/projects/bolasta/03.png", alt: "The corridor choice: the Devourer opens its mouth beside the two skill icons" },
+        { src: "/projects/bolasta/04.png", alt: "The Devourer attacks with the sacrificed skill, its icon crossed out on the bar" },
+        { src: "/projects/bolasta/05.png", alt: "Bolasta ending screen" },
+      ],
+    },
+  },
+  {
     id: "fishitting",
     title: "Fishitting",
     year: 2026,
